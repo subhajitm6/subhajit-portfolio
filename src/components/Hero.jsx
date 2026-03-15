@@ -12,8 +12,8 @@ const Hero = () => {
       {/* Animated Background Orbs */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="glow-orb w-[500px] h-[500px] bg-accent top-[-100px] left-[-100px] animate-float" />
-        <div className="glow-orb w-[400px] h-[400px] bg-cyan top-[60%] right-[-80px] animate-float-slow" />
-        <div className="glow-orb w-[300px] h-[300px] bg-purple-600 bottom-[-50px] left-[40%] animate-float-slower" />
+        <div className="glow-orb w-[400px] h-[400px] bg-robotic-green top-[60%] right-[-80px] animate-float-slow" />
+        <div className="glow-orb w-[300px] h-[300px] bg-robotic-purple bottom-[-50px] left-[40%] animate-float-slower" />
       </div>
 
       {/* Grid Overlay */}
@@ -29,10 +29,10 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-8"
+          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-none glass tech-border mb-8"
         >
-          <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-          <span className="text-sm text-dark-200">Available for opportunities</span>
+          <span className="w-2 h-2 bg-robotic-green rounded-none animate-pulse shadow-[0_0_5px_#39ff14]" />
+          <span className="text-xs uppercase tracking-[0.2em] text-accent font-bold">System Status: ONLINE</span>
         </motion.div>
 
         {/* Name */}
@@ -58,9 +58,9 @@ const Hero = () => {
               sequence={[
                 'Full Stack Developer',
                 2000,
-                'UI/UX Enthusiast',
+                'React & Laravel Developer',
                 2000,
-                'Open Source Contributor',
+                'UI/UX Enthusiast',
                 2000,
               ]}
               wrapper="span"
@@ -101,9 +101,9 @@ const Hero = () => {
           </a>
 
           <Link to="contact" smooth duration={500} offset={-80} className="w-full sm:w-auto">
-            <button className="w-full sm:w-auto justify-center btn-outline flex items-center gap-2 !border-cyan/40 !text-cyan-light hover:!bg-cyan/10">
+            <button className="w-full sm:w-auto justify-center btn-outline flex items-center gap-2 !border-robotic-green/40 !text-robotic-green hover:!bg-robotic-green/10">
               <HiMail className="w-4 h-4" />
-              <span>Contact Me</span>
+              <span>Initialize COMMS</span>
             </button>
           </Link>
         </motion.div>
@@ -136,9 +136,9 @@ const Hero = () => {
           <motion.div
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 1.5, repeat: Infinity }}
-            className="w-6 h-10 rounded-full border-2 border-dark-400 flex justify-center pt-2"
+            className="w-5 h-9 rounded-none border-2 border-accent/40 flex justify-center pt-2"
           >
-            <div className="w-1 h-2 bg-accent rounded-full" />
+            <div className="w-1 h-3 bg-accent rounded-none" />
           </motion.div>
         </Link>
       </motion.div>

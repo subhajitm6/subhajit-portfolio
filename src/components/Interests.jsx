@@ -36,11 +36,13 @@ const Interests = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="text-sm font-mono text-accent-light uppercase tracking-widest">Interests</span>
-          <h2 className="text-4xl md:text-5xl font-bold mt-3 mb-4">
-            What drives <span className="gradient-text">me</span>
+          <span className="text-xs font-mono text-accent uppercase tracking-[0.3em]">
+            &gt; Core Processes
+          </span>
+          <h2 className="text-4xl md:text-5xl font-bold mt-3 mb-4 uppercase tracking-tighter">
+            Subsystem <span className="gradient-text">Focus</span>
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-accent to-cyan mx-auto rounded-full" />
+          <div className="w-24 h-[2px] bg-gradient-to-r from-transparent via-accent to-transparent mx-auto" />
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-6">
@@ -51,10 +53,10 @@ const Interests = () => {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.15 }}
               whileHover={{ y: -8 }}
-              className="glass rounded-2xl p-7 text-center group hover:border-accent/30 transition-all duration-500"
+              className="glass rounded-none p-7 text-center group hover:border-accent/50 transition-all duration-500 tech-border border-b-2 border-b-accent/30"
             >
-              <div className="w-16 h-16 mx-auto rounded-2xl flex items-center justify-center text-accent-light mb-5 bg-accent/10 group-hover:scale-110 transition-transform">
-                {item.icon}
+              <div className="w-16 h-16 mx-auto rounded-none flex items-center justify-center text-accent mb-5 bg-accent/10 group-hover:scale-110 transition-transform rotate-45 border border-accent/20">
+                <div className="-rotate-45">{item.icon}</div>
               </div>
               <h3 className="text-lg font-bold text-white mb-3 group-hover:text-accent-light transition-colors">
                 {item.title}

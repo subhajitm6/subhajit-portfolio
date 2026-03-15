@@ -7,8 +7,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        mono: ['Fira Code', 'monospace'],
+        sans: ['Orbitron', 'Inter', 'system-ui', 'sans-serif'],
+        mono: ['Share Tech Mono', 'Fira Code', 'monospace'],
       },
       colors: {
         dark: {
@@ -25,9 +25,15 @@ export default {
           950: '#050508',
         },
         accent: {
-          DEFAULT: '#6366f1',
-          light: '#818cf8',
-          dark: '#4f46e5',
+          DEFAULT: '#00f2ff', // Neon Cyan
+          light: '#70f9ff',
+          dark: '#00c8d4',
+        },
+        robotic: {
+          green: '#39ff14', // Neon Green
+          purple: '#bc13fe', // Neon Purple
+          red: '#ff073a', // Neon Red
+          silver: '#c0c0c0',
         },
         cyan: {
           DEFAULT: '#06b6d4',
@@ -36,8 +42,8 @@ export default {
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'hero-gradient': 'linear-gradient(135deg, #6366f1 0%, #06b6d4 50%, #8b5cf6 100%)',
-        'card-gradient': 'linear-gradient(135deg, rgba(99,102,241,0.1) 0%, rgba(6,182,212,0.05) 100%)',
+        'hero-gradient': 'linear-gradient(135deg, #00f2ff 0%, #bc13fe 50%, #39ff14 100%)',
+        'card-gradient': 'linear-gradient(135deg, rgba(0,242,255,0.05) 0%, rgba(188,19,254,0.02) 100%)',
       },
       animation: {
         'float': 'float 6s ease-in-out infinite',

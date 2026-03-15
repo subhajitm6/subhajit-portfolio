@@ -47,13 +47,13 @@ const Experience = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="text-sm font-mono text-accent-light uppercase tracking-widest">
-            Experience
+          <span className="text-xs font-mono text-accent uppercase tracking-[0.3em]">
+            &gt; Deployment History
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold mt-3 mb-4">
-            Where I've <span className="gradient-text">worked</span>
+          <h2 className="text-4xl md:text-5xl font-bold mt-3 mb-4 uppercase tracking-tighter">
+            Work <span className="gradient-text">Log</span>
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-accent to-cyan mx-auto rounded-full" />
+          <div className="w-24 h-[2px] bg-gradient-to-r from-transparent via-accent to-transparent mx-auto" />
         </motion.div>
 
         {/* Timeline */}
@@ -73,26 +73,26 @@ const Experience = () => {
             >
               {/* Timeline Dot */}
               <div
-                className={`absolute left-[7px] top-6 w-[18px] h-[18px] rounded-full border-[3px] border-accent bg-dark-900 z-10 ${
+                className={`absolute left-[7px] top-6 w-[18px] h-[18px] rounded-none border-2 border-accent bg-dark-900 z-10 rotate-45 ${
                   i % 2 === 0 ? 'md:left-auto md:-right-[39px]' : 'md:right-auto md:-left-[39px]'
                 }`}
               >
-                <div className="w-full h-full rounded-full bg-accent/30 animate-pulse" />
+                <div className="w-full h-full bg-accent/50 animate-pulse" />
               </div>
 
               {/* Card */}
               <motion.div
                 whileHover={{ scale: 1.02, y: -4 }}
-                className="glass rounded-2xl p-6 hover:border-accent/30 transition-all duration-300"
+                className="glass rounded-none p-6 hover:border-accent/50 transition-all duration-300 tech-border"
               >
                 {/* Company & Role */}
                 <div className="flex items-start gap-3 mb-4">
-                  <div className="p-2 rounded-lg bg-accent/10">
-                    <HiBriefcase className="w-5 h-5 text-accent-light" />
+                  <div className="p-2 rounded-none bg-accent/10 border border-accent/20">
+                    <HiBriefcase className="w-5 h-5 text-accent" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-white">{exp.role}</h3>
-                    <p className="text-accent-light font-medium text-sm">{exp.company}</p>
+                    <h3 className="text-lg font-bold text-white uppercase tracking-tight">{exp.role}</h3>
+                    <p className="text-accent font-mono text-xs uppercase tracking-widest">{exp.company}</p>
                   </div>
                 </div>
 
@@ -111,8 +111,8 @@ const Experience = () => {
                 {/* Description */}
                 <ul className="space-y-2 mb-4">
                   {exp.description.map((d, j) => (
-                    <li key={j} className="text-sm text-dark-200 flex items-start gap-2">
-                      <span className="w-1.5 h-1.5 bg-accent rounded-full mt-1.5 flex-shrink-0" />
+                    <li key={j} className="text-xs text-dark-200 flex items-start gap-2">
+                      <span className="w-1.5 h-1.5 bg-accent rounded-none mt-1.5 flex-shrink-0 rotate-45 shadow-[0_0_5px_rgba(0,242,255,1)]" />
                       {d}
                     </li>
                   ))}
@@ -123,7 +123,7 @@ const Experience = () => {
                   {exp.tech.map((t) => (
                     <span
                       key={t}
-                      className="px-3 py-1 text-xs font-mono bg-accent/10 text-accent-light rounded-full"
+                      className="px-3 py-0.5 text-[10px] font-mono border border-accent/20 bg-accent/5 text-accent uppercase tracking-tighter"
                     >
                       {t}
                     </span>

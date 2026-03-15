@@ -32,7 +32,7 @@ const Navbar = () => {
       {/* Scroll Progress Bar */}
       <div className="fixed top-0 left-0 w-full h-[3px] z-[60]">
         <motion.div
-          className="h-full bg-gradient-to-r from-accent via-cyan to-purple-500"
+          className="h-full bg-gradient-to-r from-accent via-robotic-purple to-robotic-green shadow-[0_0_10px_rgba(0,242,255,0.5)]"
           style={{ width: `${scrollProgress}%` }}
         />
       </div>
@@ -51,9 +51,9 @@ const Navbar = () => {
           <Link to="hero" smooth duration={500} className="cursor-pointer">
             <motion.span
               whileHover={{ scale: 1.05 }}
-              className="text-xl font-bold gradient-text font-mono"
+              className="text-xl font-bold gradient-text"
             >
-              &lt; Subhajit /&gt;
+              [ SUBHAJIT.SYS ]
             </motion.span>
           </Link>
 
@@ -67,8 +67,8 @@ const Navbar = () => {
                 duration={500}
                 offset={-80}
                 spy
-                activeClass="!text-accent-light"
-                className="px-4 py-2 text-sm text-dark-200 hover:text-white cursor-pointer transition-colors duration-300 rounded-lg hover:bg-white/5"
+                activeClass="!text-accent !bg-accent/10 border-b-2 border-accent"
+                className="px-4 py-2 text-sm text-dark-200 hover:text-white cursor-pointer transition-colors duration-300 rounded-none hover:bg-accent/5 uppercase tracking-tighter font-medium"
               >
                 {link.name}
               </Link>
@@ -97,7 +97,7 @@ const Navbar = () => {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden glass-strong mt-2 mx-4 rounded-2xl overflow-hidden"
+              className="md:hidden glass-strong mt-2 mx-4 rounded-none border border-accent/30 overflow-hidden"
             >
               <div className="py-4 px-4 flex flex-col gap-1">
                 {navLinks.map((link) => (
@@ -108,7 +108,7 @@ const Navbar = () => {
                     duration={500}
                     offset={-80}
                     onClick={() => setMobileOpen(false)}
-                    className="px-4 py-3 text-sm text-dark-200 hover:text-white hover:bg-white/5 rounded-xl cursor-pointer transition-all"
+                    className="px-4 py-3 text-sm text-dark-200 hover:text-white hover:bg-accent/10 rounded-none cursor-pointer transition-all border-l-2 border-transparent hover:border-accent uppercase tracking-widest"
                   >
                     {link.name}
                   </Link>

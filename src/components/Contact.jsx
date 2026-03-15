@@ -50,13 +50,15 @@ const Contact = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="text-sm font-mono text-accent-light uppercase tracking-widest">Contact</span>
-          <h2 className="text-4xl md:text-5xl font-bold mt-3 mb-4">
-            Let's <span className="gradient-text">connect</span>
+          <span className="text-xs font-mono text-accent uppercase tracking-[0.3em]">
+            &gt; Open Channel
+          </span>
+          <h2 className="text-4xl md:text-5xl font-bold mt-3 mb-4 uppercase tracking-tighter">
+            Establish <span className="gradient-text">Link</span>
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-accent to-cyan mx-auto rounded-full" />
-          <p className="text-dark-300 mt-4 max-w-lg mx-auto">
-            Have a project in mind or want to collaborate? Feel free to reach out!
+          <div className="w-24 h-[2px] bg-gradient-to-r from-transparent via-accent to-transparent mx-auto" />
+          <p className="text-dark-300 mt-4 max-w-lg mx-auto uppercase text-[10px] tracking-widest">
+            Synchronize projects or initiate collaborative protocols.
           </p>
         </motion.div>
 
@@ -68,7 +70,7 @@ const Contact = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="lg:col-span-3"
           >
-            <form onSubmit={handleSubmit} className="glass rounded-2xl p-8 space-y-5">
+            <form onSubmit={handleSubmit} className="glass rounded-none p-8 space-y-5 tech-border">
               <div className="grid sm:grid-cols-2 gap-5">
                 <div>
                   <label className="text-sm text-dark-200 mb-2 block">Name</label>
@@ -79,7 +81,7 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     placeholder="Your name"
-                    className="w-full px-4 py-3 rounded-xl bg-dark-700/50 border border-dark-500/50 text-white placeholder-dark-400 focus:border-accent/50 focus:outline-none focus:ring-1 focus:ring-accent/30 transition-all text-sm"
+                    className="w-full px-4 py-3 rounded-none bg-dark-700/50 border border-dark-500/50 text-white placeholder-dark-400 focus:border-accent/50 focus:outline-none focus:ring-1 focus:ring-accent/30 transition-all text-sm uppercase tracking-tighter"
                   />
                 </div>
                 <div>
@@ -91,7 +93,7 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     placeholder="your@email.com"
-                    className="w-full px-4 py-3 rounded-xl bg-dark-700/50 border border-dark-500/50 text-white placeholder-dark-400 focus:border-accent/50 focus:outline-none focus:ring-1 focus:ring-accent/30 transition-all text-sm"
+                    className="w-full px-4 py-3 rounded-none bg-dark-700/50 border border-dark-500/50 text-white placeholder-dark-400 focus:border-accent/50 focus:outline-none focus:ring-1 focus:ring-accent/30 transition-all text-sm uppercase tracking-tighter"
                   />
                 </div>
               </div>
@@ -134,8 +136,8 @@ const Contact = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.4, delay: 0.5 + i * 0.1 }}
-                whileHover={{ scale: 1.03, y: -2 }}
-                className="glass rounded-xl p-5 flex items-center gap-4 group hover:border-accent/30 transition-all duration-300 block"
+                whileHover={{ scale: 1.03, x: 5 }}
+                className="glass rounded-none p-5 flex items-center gap-4 group hover:border-accent/50 transition-all duration-500 block border-l-4 border-accent"
               >
                 <div className="p-3 rounded-lg bg-accent/10 text-accent-light group-hover:bg-accent/20 transition-colors">
                   {info.icon}
@@ -152,7 +154,7 @@ const Contact = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.4, delay: 0.8 }}
-              className="glass rounded-xl p-5 flex items-center gap-4"
+              className="glass rounded-none p-5 flex items-center gap-4 border border-accent/10"
             >
               <div className="p-3 rounded-lg bg-accent/10 text-accent-light">
                 <HiLocationMarker className="w-5 h-5" />

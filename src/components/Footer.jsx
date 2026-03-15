@@ -8,8 +8,8 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Logo */}
           <div className="text-center md:text-left">
-            <span className="text-xl font-bold gradient-text font-mono">&lt; Subhajit /&gt;</span>
-            <p className="text-sm text-dark-400 mt-1">Full Stack Developer</p>
+            <span className="text-xl font-bold gradient-text">[ SUBHAJIT.SYS ]</span>
+            <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-accent mt-1">LOGIC_UNIT: ACTIVE</p>
           </div>
 
           {/* Social Links */}
@@ -26,9 +26,9 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={s.label}
-                className="w-10 h-10 rounded-xl glass-light flex items-center justify-center text-dark-300 hover:text-accent-light hover:border-accent/30 transition-all duration-300 hover:-translate-y-1"
+                className="w-10 h-10 rounded-none rotate-45 glass flex items-center justify-center text-dark-300 hover:text-accent hover:border-accent/50 transition-all duration-300 hover:scale-110"
               >
-                {s.icon}
+                <div className="-rotate-45">{s.icon}</div>
               </a>
             ))}
           </div>

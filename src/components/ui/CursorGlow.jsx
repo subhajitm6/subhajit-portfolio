@@ -32,15 +32,16 @@ const CursorGlow = () => {
 
   return (
     <motion.div
-      className="fixed top-0 left-0 w-8 h-8 rounded-full pointer-events-none z-50 mix-blend-screen"
+      className="fixed top-0 left-0 w-6 h-6 rounded-none pointer-events-none z-50 mix-blend-screen border-2 border-accent"
       animate={{
-        x: mousePosition.x - 16,
-        y: mousePosition.y - 16,
-        scale: isHovering ? 1.5 : 1,
-        backgroundColor: isHovering ? 'rgba(6, 182, 212, 0.4)' : 'rgba(99, 102, 241, 0.4)',
+        x: mousePosition.x - 12,
+        y: mousePosition.y - 12,
+        scale: isHovering ? 2 : 1,
+        rotate: isHovering ? 45 : 0,
+        backgroundColor: isHovering ? 'rgba(0, 242, 255, 0.3)' : 'rgba(0, 242, 255, 0.1)',
         boxShadow: isHovering 
-          ? '0 0 20px 10px rgba(6, 182, 212, 0.2)' 
-          : '0 0 15px 5px rgba(99, 102, 241, 0.2)'
+          ? '0 0 25px 5px rgba(0, 242, 255, 0.5)' 
+          : '0 0 10px 2px rgba(0, 242, 255, 0.2)'
       }}
       transition={{ type: 'tween', ease: 'backOut', duration: 0.15 }}
     />

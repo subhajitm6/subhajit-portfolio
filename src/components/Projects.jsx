@@ -100,7 +100,7 @@ const ProjectCard = ({ project, i, isInView }) => {
       }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="glass rounded-2xl overflow-hidden group hover:border-accent/30 transition-colors duration-500 relative isolate"
+      className="glass rounded-none overflow-hidden group hover:border-accent/50 transition-colors duration-500 relative isolate tech-border"
     >
       <div className="h-full w-full relative z-10 bg-dark-800/50">
         {/* Card Header with Gradient */}
@@ -122,7 +122,7 @@ const ProjectCard = ({ project, i, isInView }) => {
         {/* Card Body */}
         <div className="p-6 relative z-20">
           <div className="mb-3">
-            <h3 className="text-xl font-bold text-white group-hover:text-accent-light transition-colors">
+            <h3 className="text-xl font-bold text-white group-hover:text-accent transition-colors uppercase tracking-tight">
               {project.title}
             </h3>
             <p className={`text-sm ${project.accentColor} font-medium mt-0.5`}>
@@ -138,7 +138,7 @@ const ProjectCard = ({ project, i, isInView }) => {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 mb-4 relative z-20">
             {project.features.map((f) => (
               <span key={f} className="text-xs text-dark-300 flex items-center gap-1.5">
-                <span className="w-1 h-1 bg-accent rounded-full" />
+                <span className="w-1 h-1 bg-accent rounded-none rotate-45" />
                 {f}
               </span>
             ))}
@@ -149,7 +149,7 @@ const ProjectCard = ({ project, i, isInView }) => {
             {project.tech.map((t) => (
               <span
                 key={t}
-                className="px-2.5 py-1 text-[11px] font-mono bg-white/5 text-dark-200 rounded-md"
+                className="px-2.5 py-0.5 text-[10px] font-mono border border-white/10 bg-white/5 text-dark-200 uppercase tracking-tighter"
               >
                 {t}
               </span>
@@ -162,19 +162,19 @@ const ProjectCard = ({ project, i, isInView }) => {
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl bg-accent/10 text-accent-light text-sm font-medium hover:bg-accent/20 transition-colors cursor-pointer"
+              className="flex-1 flex items-center justify-center gap-2 py-2 rounded-none bg-accent/10 border border-accent/20 text-accent text-xs font-bold uppercase tracking-widest hover:bg-accent hover:text-dark-950 transition-all cursor-pointer"
             >
               <HiExternalLink className="w-4 h-4" />
-              Live Demo
+              DEPLOY DEMO
             </a>
             <a
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl bg-white/5 text-dark-200 text-sm font-medium hover:bg-white/10 transition-colors cursor-pointer"
+              className="flex-1 flex items-center justify-center gap-2 py-2 rounded-none bg-white/5 border border-white/10 text-dark-200 text-xs font-bold uppercase tracking-widest hover:bg-white/10 transition-all cursor-pointer"
             >
               <HiCode className="w-4 h-4" />
-              GitHub
+              SOURCE_CODE
             </a>
           </div>
         </div>
@@ -199,13 +199,13 @@ const Projects = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="text-sm font-mono text-accent-light uppercase tracking-widest">
-            Portfolio
+          <span className="text-xs font-mono text-accent uppercase tracking-[0.3em]">
+            &gt; Cataloging Achievements
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold mt-3 mb-4">
-            Featured <span className="gradient-text">Projects</span>
+          <h2 className="text-4xl md:text-5xl font-bold mt-3 mb-4 uppercase tracking-tighter">
+            System <span className="gradient-text">Builds</span>
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-accent to-cyan mx-auto rounded-full" />
+          <div className="w-24 h-[2px] bg-gradient-to-r from-transparent via-accent to-transparent mx-auto" />
           <p className="text-dark-300 mt-4 max-w-xl mx-auto">
             A selection of projects that showcase my skills in full-stack development
           </p>

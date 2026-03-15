@@ -31,13 +31,13 @@ const Certifications = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="text-sm font-mono text-accent-light uppercase tracking-widest">
-            Certifications
+          <span className="text-xs font-mono text-accent uppercase tracking-[0.3em]">
+            &gt; Validating Skills
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold mt-3 mb-4">
-            My <span className="gradient-text">Credentials</span>
+          <h2 className="text-4xl md:text-5xl font-bold mt-3 mb-4 uppercase tracking-tighter">
+            Verified <span className="gradient-text">Protocols</span>
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-accent to-cyan mx-auto rounded-full" />
+          <div className="w-24 h-[2px] bg-gradient-to-r from-transparent via-accent to-transparent mx-auto" />
         </motion.div>
 
         {/* Certification Cards */}
@@ -48,15 +48,15 @@ const Certifications = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.2 }}
-              whileHover={{ scale: 1.03, y: -4 }}
-              className="glass rounded-2xl p-6 group hover:border-accent/30 transition-all duration-500"
+              whileHover={{ scale: 1.03, x: 5 }}
+              className="glass rounded-none p-6 group hover:border-accent/50 transition-all duration-500 tech-border"
             >
               <div className="flex items-start gap-4">
-                <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${cert.color} flex items-center justify-center text-2xl flex-shrink-0`}>
-                  {cert.icon}
+                <div className={`w-14 h-14 rounded-none bg-gradient-to-br ${cert.color} flex items-center justify-center text-2xl flex-shrink-0 rotate-45 border border-white/10`}>
+                  <div className="-rotate-45">{cert.icon}</div>
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-base font-semibold text-white mb-1 group-hover:text-accent-light transition-colors">
+                  <h3 className="text-base font-bold text-white mb-1 group-hover:text-accent transition-colors uppercase tracking-tight">
                     {cert.title}
                   </h3>
                   <div className="flex items-center gap-2 text-sm text-dark-300">

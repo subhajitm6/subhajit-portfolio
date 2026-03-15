@@ -74,13 +74,13 @@ const Skills = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="text-sm font-mono text-accent-light uppercase tracking-widest">
-            My Skills
+          <span className="text-xs font-mono text-accent uppercase tracking-[0.3em]">
+            &gt; Scaning Capabilities
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold mt-3 mb-4">
-            Technologies I <span className="gradient-text">work with</span>
+          <h2 className="text-4xl md:text-5xl font-bold mt-3 mb-4 uppercase tracking-tighter">
+            Core <span className="gradient-text">Architecture</span>
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-accent to-cyan mx-auto rounded-full" />
+          <div className="w-24 h-[2px] bg-gradient-to-r from-transparent via-accent to-transparent mx-auto" />
         </motion.div>
 
         {/* Skills Grid */}
@@ -91,10 +91,10 @@ const Skills = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: catIdx * 0.15 }}
-              className={`glass rounded-2xl p-6 hover:border-accent/30 transition-all duration-300 group`}
+              className={`glass rounded-none p-6 hover:border-accent/50 transition-all duration-300 group tech-border`}
             >
               <h3 className="text-lg font-semibold text-white mb-5 flex items-center gap-2">
-                <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${category.color}`} />
+                <div className={`w-2 h-2 rounded-none rotate-45 bg-gradient-to-r ${category.color}`} />
                 {category.title}
               </h3>
 
@@ -109,19 +109,19 @@ const Skills = () => {
                   >
                     <div className="flex items-center justify-between mb-1.5">
                       <div className="flex items-center gap-2.5">
-                        <span className="text-accent-light text-lg group-hover/skill:scale-110 transition-transform">
+                        <span className="text-accent text-lg group-hover/skill:scale-110 transition-transform">
                           {skill.icon}
                         </span>
-                        <span className="text-sm font-medium text-dark-100">{skill.name}</span>
+                        <span className="text-xs uppercase tracking-wider font-bold text-dark-100">{skill.name}</span>
                       </div>
                       <span className="text-xs text-dark-400 font-mono">{skill.level}%</span>
                     </div>
-                    <div className="h-1.5 bg-dark-700 rounded-full overflow-hidden">
+                    <div className="h-1 bg-dark-700 rounded-none overflow-hidden">
                       <motion.div
                         initial={{ width: 0 }}
                         animate={isInView ? { width: `${skill.level}%` } : {}}
                         transition={{ duration: 1.2, delay: catIdx * 0.15 + skillIdx * 0.08, ease: 'easeOut' }}
-                        className="h-full rounded-full bg-gradient-to-r from-accent to-cyan"
+                        className="h-full rounded-none bg-gradient-to-r from-accent via-robotic-purple to-robotic-green shadow-[0_0_8px_rgba(0,242,255,0.5)]"
                       />
                     </div>
                   </motion.div>

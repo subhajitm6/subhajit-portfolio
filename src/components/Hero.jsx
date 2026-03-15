@@ -51,9 +51,9 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="mb-6 h-[40px] flex items-center justify-center"
+          className="mb-6 min-h-[60px] sm:min-h-[40px] flex items-center justify-center px-2"
         >
-          <span className="text-xl sm:text-2xl md:text-3xl font-mono text-accent-light font-medium">
+          <span className="text-base sm:text-2xl md:text-3xl font-mono text-accent-light px-2 font-medium text-center">
             <TypeAnimation
               sequence={[
                 'Full Stack Developer',
@@ -86,22 +86,22 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="flex flex-wrap items-center justify-center gap-4"
+          className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 w-full"
         >
-          <Link to="projects" smooth duration={500} offset={-80}>
-            <button className="btn-primary text-white flex items-center gap-2 group">
+          <Link to="projects" smooth duration={500} offset={-80} className="w-full sm:w-auto">
+            <button className="w-full sm:w-auto justify-center btn-primary text-white flex items-center gap-2 group">
               <span>View Projects</span>
               <HiArrowDown className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
             </button>
           </Link>
 
-          <a href="/resume.pdf" className="btn-outline flex items-center gap-2" download>
+          <a href="/resume.pdf" className="w-full sm:w-auto justify-center btn-outline flex items-center gap-2" download>
             <HiDownload className="w-4 h-4" />
             <span>Download Resume</span>
           </a>
 
-          <Link to="contact" smooth duration={500} offset={-80}>
-            <button className="btn-outline flex items-center gap-2 !border-cyan/40 !text-cyan-light hover:!bg-cyan/10">
+          <Link to="contact" smooth duration={500} offset={-80} className="w-full sm:w-auto">
+            <button className="w-full sm:w-auto justify-center btn-outline flex items-center gap-2 !border-cyan/40 !text-cyan-light hover:!bg-cyan/10">
               <HiMail className="w-4 h-4" />
               <span>Contact Me</span>
             </button>

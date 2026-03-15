@@ -14,7 +14,7 @@ const projects = [
     gradient: 'from-blue-500/20 to-cyan/20',
     accentColor: 'text-cyan-light',
     features: ['Real-time price tracking', 'Interactive charts', 'Market analytics', 'Responsive design'],
-    liveUrl: '#',
+    liveUrl: 'https://subhajit-crypto-place.netlify.app/',
     githubUrl: 'https://github.com/subhajitm6/crypto-place',
   },
   {
@@ -27,8 +27,8 @@ const projects = [
     gradient: 'from-yellow-500/20 to-orange-500/20',
     accentColor: 'text-yellow-400',
     features: ['Budget tracking', 'Expense analytics', 'Charts & graphs', 'Data persistence'],
-    liveUrl: '#',
-    githubUrl: '#',
+    liveUrl: 'https://cash-flow--msubhajit.replit.app',
+    githubUrl: '',
   },
   {
     title: 'Payroll Management System',
@@ -135,7 +135,7 @@ const ProjectCard = ({ project, i, isInView }) => {
           </p>
 
           {/* Features */}
-          <div className="grid grid-cols-2 gap-1.5 mb-4 relative z-20">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 mb-4 relative z-20">
             {project.features.map((f) => (
               <span key={f} className="text-xs text-dark-300 flex items-center gap-1.5">
                 <span className="w-1 h-1 bg-accent rounded-full" />
@@ -157,7 +157,7 @@ const ProjectCard = ({ project, i, isInView }) => {
           </div>
 
           {/* Action Buttons */}
-          <div className="flex gap-3 relative z-50">
+          <div className="flex flex-col sm:flex-row gap-3 relative z-50">
             <a
               href={project.liveUrl}
               target="_blank"
@@ -188,7 +188,7 @@ const Projects = () => {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="projects" className="section-padding relative" ref={ref}>
+    <section id="projects" className="section-padding relative overflow-hidden" ref={ref}>
       <div className="glow-orb w-[500px] h-[500px] bg-accent left-[-200px] bottom-[10%]" />
 
       <div className="max-w-6xl mx-auto relative cursor-none sm:cursor-auto" style={{ perspective: '1000px' }}>

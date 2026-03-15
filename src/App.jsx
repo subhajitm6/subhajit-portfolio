@@ -14,7 +14,7 @@ import Background3D from './components/ui/Background3D';
 
 function App() {
   return (
-    <div className="relative bg-dark-900 min-h-screen">
+    <div className="relative bg-dark-900 min-h-screen overflow-x-hidden">
       <Background3D />
       <ScrollProgress />
       <CursorGlow />

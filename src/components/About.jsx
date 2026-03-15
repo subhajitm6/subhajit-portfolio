@@ -26,7 +26,7 @@ const About = () => {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="about" className="section-padding relative" ref={ref}>
+    <section id="about" className="section-padding relative overflow-hidden" ref={ref}>
       {/* Background orb */}
       <div className="glow-orb w-[400px] h-[400px] bg-accent top-[20%] right-[-200px]" />
 
@@ -55,7 +55,7 @@ const About = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="lg:col-span-3"
           >
-            <div className="glass rounded-2xl p-8 space-y-5">
+            <div className="glass rounded-2xl p-6 sm:p-8 space-y-5">
               <p className="text-dark-100 leading-relaxed text-lg">
                 I'm a passionate <span className="text-accent-light font-semibold">Full Stack Developer</span> with 
                 hands-on experience in building modern web applications using{' '}
@@ -76,7 +76,7 @@ const About = () => {
               </p>
 
               {/* Quick Stats */}
-              <div className="grid grid-cols-3 gap-4 pt-4">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 pt-4">
                 {[
                   { num: '4+', label: 'Projects' },
                   { num: '1+', label: 'Year Exp.' },

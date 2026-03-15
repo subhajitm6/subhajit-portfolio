@@ -36,7 +36,7 @@ const Experience = () => {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="experience" className="section-padding relative" ref={ref}>
+    <section id="experience" className="section-padding relative overflow-hidden" ref={ref}>
       <div className="glow-orb w-[400px] h-[400px] bg-purple-600 right-[-200px] top-[20%]" />
 
       <div className="max-w-4xl mx-auto relative">
@@ -57,7 +57,7 @@ const Experience = () => {
         </motion.div>
 
         {/* Timeline */}
-        <div className="relative">
+        <div className="relative ml-2 sm:ml-0">
           {/* Vertical Line */}
           <div className="absolute left-[15px] md:left-1/2 top-0 bottom-0 w-[2px] md:-translate-x-[1px] timeline-line opacity-30" />
 

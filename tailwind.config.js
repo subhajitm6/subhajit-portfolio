@@ -15,8 +15,8 @@ export default {
         spidey: {
           red: '#E11D48',
           blue: '#1D4ED8',
-          dark: '#020617',
-          black: '#0A0A0B',
+          dark: '#0a0a0a',
+          black: '#0a0a0a',
           glow: {
             red: '#FF1E56',
             blue: '#2E5BFF',
@@ -25,7 +25,7 @@ export default {
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'spidey-gradient': 'linear-gradient(135deg, #020617 0%, #0A0A0B 100%)',
+        'spidey-gradient': 'linear-gradient(135deg, #0a0a0a 0%, #030303 100%)',
         'spidey-card': 'linear-gradient(135deg, rgba(225, 29, 72, 0.05) 0%, rgba(29, 78, 216, 0.05) 100%)',
       },
       animation: {

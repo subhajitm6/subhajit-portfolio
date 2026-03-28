@@ -32,10 +32,6 @@ function App() {
 
   return (
     <div className="relative bg-spidey-dark min-h-screen overflow-x-hidden transition-colors duration-500">
-      <CustomCursor />
-      <ScrollProgress />
-      <SpiderWebs />
-      <MovingSpider />
       <Navbar />
       <main className="relative z-10">
         <Hero />
@@ -46,6 +42,12 @@ function App() {
         <Contact />
       </main>
       <Footer />
+      
+      {/* UI Utilities on Top Layer */}
+      <SpiderWebs />
+      <MovingSpider />
+      <ScrollProgress />
+      <CustomCursor />
       
       {/* Background Web Pattern Overlay */}
       <div className="fixed inset-0 pointer-events-none opacity-20 bg-web z-0" />

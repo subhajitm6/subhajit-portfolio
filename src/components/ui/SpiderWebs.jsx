@@ -52,15 +52,15 @@ const RealisticWebSVG = ({ className }) => (
 
 const SpiderWebs = () => {
   const { scrollYProgress } = useScroll();
-  const yParallax = useTransform(scrollYProgress, [0, 1], [0, 150]);
-  const yInverse = useTransform(scrollYProgress, [0, 1], [0, -150]);
+  const yParallax = useTransform(scrollYProgress, [0, 1], [0, 100]);
+  const yInverse = useTransform(scrollYProgress, [0, 1], [0, -100]);
 
   return (
     <div className="fixed inset-0 pointer-events-none z-[1] overflow-hidden">
-      {/* Top Right Corner (Hero) - Dense and Complex */}
+      {/* Top Right Corner (Hero) */}
       <motion.div 
         style={{ y: yParallax }}
-        className="absolute -top-10 -right-10 w-[400px] h-[400px] md:w-[600px] md:h-[600px] rotate-180 opacity-60"
+        className="absolute -top-20 -right-20 w-[400px] h-[400px] md:w-[600px] md:h-[600px] rotate-180 opacity-[0.08]"
       >
         <RealisticWebSVG className="w-full h-full" />
       </motion.div>
@@ -68,16 +68,16 @@ const SpiderWebs = () => {
       {/* Bottom Left Corner (Footer Area) */}
       <motion.div 
         style={{ y: yInverse }}
-        className="absolute -bottom-10 -left-10 w-[300px] h-[300px] md:w-[500px] md:h-[500px] opacity-40"
+        className="absolute -bottom-20 -left-20 w-[300px] h-[300px] md:w-[500px] md:h-[500px] opacity-[0.05]"
       >
         <RealisticWebSVG className="w-full h-full" />
       </motion.div>
 
-      {/* Scattered background webs for depth */}
-      <div className="absolute top-[20%] left-[-5%] w-64 h-64 opacity-10">
+      {/* Extremely faint scattered background webs for depth */}
+      <div className="absolute top-[30%] left-[-10%] w-64 h-64 opacity-[0.02]">
          <RealisticWebSVG className="w-full h-full" />
       </div>
-      <div className="absolute bottom-[30%] right-[-5%] w-48 h-48 opacity-10 rotate-90">
+      <div className="absolute bottom-[20%] right-[-10%] w-48 h-48 opacity-[0.02] rotate-90">
          <RealisticWebSVG className="w-full h-full" />
       </div>
     </div>

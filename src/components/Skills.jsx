@@ -11,9 +11,10 @@ import { HiDatabase, HiOfficeBuilding, HiCog } from 'react-icons/hi';
 
 const skillCategories = [
   {
-    title: 'Programming Languages',
-    color: 'from-yellow-500/20 to-orange-500/20',
-    borderColor: 'border-yellow-500/20',
+    title: 'Offensive Capability',
+    subtitle: 'Languages',
+    color: 'text-spidey-red',
+    glowColor: 'bg-spidey-red',
     skills: [
       { name: 'Java', icon: <FaJava />, level: 75 },
       { name: 'JavaScript', icon: <SiJavascript />, level: 85 },
@@ -24,9 +25,10 @@ const skillCategories = [
     ],
   },
   {
-    title: 'Frameworks & Libraries',
-    color: 'from-accent/20 to-purple-500/20',
-    borderColor: 'border-accent/20',
+    title: 'Structural Systems',
+    subtitle: 'Frameworks',
+    color: 'text-spidey-blue',
+    glowColor: 'bg-spidey-blue',
     skills: [
       { name: 'Laravel', icon: <SiLaravel />, level: 85 },
       { name: 'React.js', icon: <SiReact />, level: 80 },
@@ -35,9 +37,10 @@ const skillCategories = [
     ],
   },
   {
-    title: 'Databases',
-    color: 'from-cyan/20 to-blue-500/20',
-    borderColor: 'border-cyan/20',
+    title: 'Data Intelligence',
+    subtitle: 'Databases',
+    color: 'text-spidey-red',
+    glowColor: 'bg-spidey-red',
     skills: [
       { name: 'MySQL', icon: <SiMysql />, level: 80 },
       { name: 'MS Dataverse', icon: <HiDatabase />, level: 70 },
@@ -45,9 +48,10 @@ const skillCategories = [
     ],
   },
   {
-    title: 'Tools & Platforms',
-    color: 'from-green-500/20 to-emerald-500/20',
-    borderColor: 'border-green-500/20',
+    title: 'Utility Arsenal',
+    subtitle: 'Tools',
+    color: 'text-spidey-blue',
+    glowColor: 'bg-spidey-blue',
     skills: [
       { name: 'Git', icon: <SiGit />, level: 85 },
       { name: 'GitHub', icon: <SiGithub />, level: 85 },
@@ -63,66 +67,84 @@ const Skills = () => {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="skills" className="section-padding relative" ref={ref}>
-      <div className="glow-orb w-[400px] h-[400px] bg-cyan left-[-200px] top-[30%]" />
+    <section id="skills" className="section-padding relative bg-spidey-black overflow-hidden" ref={ref}>
+      {/* Background Web pattern corner */}
+      <div className="absolute top-0 left-0 w-64 h-64 opacity-10 pointer-events-none">
+        <div className="absolute top-[-20px] left-[-20px] w-full h-full border-t border-l border-spidey-blue rounded-tl-[100px]" />
+      </div>
 
-      <div className="max-w-6xl mx-auto relative">
+      <div className="max-w-6xl mx-auto relative z-10">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={isInView ? { opacity: 1, scale: 1 } : {}}
+          transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <span className="text-xs font-mono text-accent uppercase tracking-[0.3em]">
-            &gt; Scaning Capabilities
+          <span className="text-sm font-display text-spidey-blue uppercase tracking-[0.4em] mb-4 block">
+            Capabilities Arsenal
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold mt-3 mb-4 uppercase tracking-tighter">
-            Core <span className="gradient-text">Architecture</span>
+          <h2 className="text-4xl md:text-6xl font-bold font-heading text-white">
+            Core <span className="text-spidey-red">Architecture</span>
           </h2>
-          <div className="w-24 h-[2px] bg-gradient-to-r from-transparent via-accent to-transparent mx-auto" />
+          <div className="w-24 h-1 bg-spidey-blue mx-auto mt-6 rounded-full shadow-[0_0_10px_#1D4ED8]" />
         </motion.div>
 
         {/* Skills Grid */}
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-8">
           {skillCategories.map((category, catIdx) => (
             <motion.div
               key={category.title}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 50 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: catIdx * 0.15 }}
-              className={`glass rounded-none p-6 hover:border-accent/50 transition-all duration-300 group tech-border`}
+              transition={{ duration: 0.6, delay: catIdx * 0.2 }}
+              whileHover={{ y: -10 }}
+              className="glass-card rounded-2xl p-8 border border-white/5 hover:border-spidey-blue/30 relative overflow-hidden group shadow-2xl"
             >
-              <h3 className="text-lg font-semibold text-white mb-5 flex items-center gap-2">
-                <div className={`w-2 h-2 rounded-none rotate-45 bg-gradient-to-r ${category.color}`} />
-                {category.title}
-              </h3>
+              {/* Background Accent */}
+              <div className={`absolute top-0 right-0 w-32 h-32 opacity-5 rounded-full blur-3xl ${category.glowColor}`} />
+              
+              <div className="flex items-end justify-between mb-8 border-b border-white/5 pb-4">
+                <div>
+                  <h3 className={`text-2xl font-bold font-heading ${category.color}`}>
+                    {category.title}
+                  </h3>
+                  <p className="text-xs text-slate-500 uppercase tracking-widest mt-1">
+                    {category.subtitle}
+                  </p>
+                </div>
+                <div className="h-10 w-10 border border-white/10 rounded-lg flex items-center justify-center text-slate-400 group-hover:text-white transition-colors">
+                  {catIdx % 2 === 0 ? <HiCog className="animate-spin-slow" /> : <HiLightningBolt />}
+                </div>
+              </div>
 
-              <div className="space-y-4">
+              <div className="grid sm:grid-cols-2 gap-x-8 gap-y-6">
                 {category.skills.map((skill, skillIdx) => (
                   <motion.div
                     key={skill.name}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.4, delay: catIdx * 0.15 + skillIdx * 0.08 }}
+                    initial={{ opacity: 0 }}
+                    animate={isInView ? { opacity: 1 } : {}}
+                    transition={{ duration: 0.5, delay: catIdx * 0.2 + skillIdx * 0.1 }}
                     className="group/skill"
                   >
-                    <div className="flex items-center justify-between mb-1.5">
-                      <div className="flex items-center gap-2.5">
-                        <span className="text-accent text-lg group-hover/skill:scale-110 transition-transform">
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="flex items-center gap-2">
+                        <span className={`${category.color} text-xl transition-transform group-hover/skill:scale-125 duration-300`}>
                           {skill.icon}
                         </span>
-                        <span className="text-xs uppercase tracking-wider font-bold text-dark-100">{skill.name}</span>
+                        <span className="text-xs uppercase tracking-wider font-bold text-slate-300">{skill.name}</span>
                       </div>
-                      <span className="text-xs text-dark-400 font-mono">{skill.level}%</span>
+                      <span className="text-[10px] text-slate-500 font-mono font-bold">{skill.level}%</span>
                     </div>
-                    <div className="h-1 bg-dark-700 rounded-none overflow-hidden">
+                    <div className="h-1.5 bg-slate-800 rounded-full overflow-hidden p-[1px]">
                       <motion.div
                         initial={{ width: 0 }}
                         animate={isInView ? { width: `${skill.level}%` } : {}}
-                        transition={{ duration: 1.2, delay: catIdx * 0.15 + skillIdx * 0.08, ease: 'easeOut' }}
-                        className="h-full rounded-none bg-gradient-to-r from-accent via-robotic-purple to-robotic-green shadow-[0_0_8px_rgba(0,242,255,0.5)]"
-                      />
+                        transition={{ duration: 1.5, delay: catIdx * 0.2 + skillIdx * 0.1, ease: 'circOut' }}
+                        className={`h-full rounded-full transition-all duration-500 relative ${category.glowColor}`}
+                      >
+                         <div className="absolute inset-0 bg-white/20 animate-pulse" />
+                      </motion.div>
                     </div>
                   </motion.div>
                 ))}
@@ -134,5 +156,9 @@ const Skills = () => {
     </section>
   );
 };
+
+const HiLightningBolt = () => (
+  <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 20 20" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clipRule="evenodd"></path></svg>
+);
 
 export default Skills;

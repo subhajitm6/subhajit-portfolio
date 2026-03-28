@@ -29,62 +29,63 @@ const Navbar = () => {
 
   return (
     <>
-      {/* Scroll Progress Bar */}
-      <div className="fixed top-0 left-0 w-full h-[3px] z-[60]">
-        <motion.div
-          className="h-full bg-gradient-to-r from-accent via-robotic-purple to-robotic-green shadow-[0_0_10px_rgba(0,242,255,0.5)]"
-          style={{ width: `${scrollProgress}%` }}
-        />
-      </div>
+
 
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
-            ? 'glass-strong shadow-lg shadow-black/20 py-3'
-            : 'bg-transparent py-5'
+        transition={{ duration: 0.8, ease: 'circOut' }}
+        className={`fixed top-0 left-0 right-0 z-[60] transition-all duration-500 ${scrolled
+            ? 'bg-spidey-black/80 backdrop-blur-xl border-b border-white/5 py-3 shadow-2xl'
+            : 'bg-transparent py-6'
           }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between">
           {/* Logo */}
-          <Link to="hero" smooth duration={500} className="cursor-pointer">
-            <motion.span
+          <Link to="hero" smooth duration={500} className="cursor-pointer group">
+            <motion.div
               whileHover={{ scale: 1.05 }}
-              className="text-xl font-bold gradient-text"
+              className="flex items-center gap-2"
             >
-              [ SUBHAJIT.SYS ]
-            </motion.span>
+              <span className="text-2xl font-black font-heading tracking-tighter text-white">
+                SUBHAJIT<span className="text-spidey-red group-hover:text-spidey-blue transition-colors">.DEV</span>
+              </span>
+            </motion.div>
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-1">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.to}
+          <div className="hidden md:flex items-center gap-8">
+            <div className="flex items-center gap-1 bg-white/5 p-1 rounded-full border border-white/5">
+                {navLinks.map((link) => (
+                    <Link
+                        key={link.name}
+                        to={link.to}
+                        smooth
+                        duration={500}
+                        offset={-80}
+                        spy
+                        activeClass="!text-white !bg-spidey-red shadow-[0_0_15px_rgba(225,29,72,0.4)]"
+                        className="px-5 py-2 text-[10px] font-bold text-slate-400 hover:text-white cursor-pointer transition-all duration-300 rounded-full uppercase tracking-widest font-display"
+                    >
+                        {link.name}
+                    </Link>
+                ))}
+            </div>
+            
+            <Link
+                to="contact"
                 smooth
                 duration={500}
-                offset={-80}
-                spy
-                activeClass="!text-accent !bg-accent/10 border-b-2 border-accent"
-                className="px-4 py-2 text-sm text-dark-200 hover:text-white cursor-pointer transition-colors duration-300 rounded-none hover:bg-accent/5 uppercase tracking-tighter font-medium"
-              >
-                {link.name}
-              </Link>
-            ))}
-            <a
-              href="#contact"
-              className="ml-3 btn-primary text-white text-sm !px-5 !py-2"
+                className="btn-spidey text-[10px] px-6 py-2 rounded-full cursor-pointer shadow-lg hover:shadow-spidey-red/40"
             >
-              Hire Me
-            </a>
+              SIGNAL ME
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden text-2xl text-dark-100 hover:text-white transition-colors"
+            className="md:hidden p-2 text-2xl text-white hover:text-spidey-red transition-colors bg-white/5 rounded-lg border border-white/10"
           >
             {mobileOpen ? <HiX /> : <HiMenuAlt3 />}
           </button>
@@ -94,12 +95,12 @@ const Navbar = () => {
         <AnimatePresence>
           {mobileOpen && (
             <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              className="md:hidden glass-strong mt-2 mx-4 rounded-none border border-accent/30 overflow-hidden"
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 50 }}
+              className="fixed top-20 right-6 w-64 bg-spidey-dark/95 backdrop-blur-2xl rounded-3xl border border-white/10 overflow-hidden shadow-2xl z-[70] md:hidden"
             >
-              <div className="py-4 px-4 flex flex-col gap-1">
+              <div className="p-6 flex flex-col gap-2">
                 {navLinks.map((link) => (
                   <Link
                     key={link.name}
@@ -108,7 +109,7 @@ const Navbar = () => {
                     duration={500}
                     offset={-80}
                     onClick={() => setMobileOpen(false)}
-                    className="px-4 py-3 text-sm text-dark-200 hover:text-white hover:bg-accent/10 rounded-none cursor-pointer transition-all border-l-2 border-transparent hover:border-accent uppercase tracking-widest"
+                    className="px-5 py-4 text-xs font-bold text-slate-400 hover:text-white hover:bg-spidey-red/20 rounded-2xl cursor-pointer transition-all border-l-4 border-transparent hover:border-spidey-red uppercase tracking-widest"
                   >
                     {link.name}
                   </Link>

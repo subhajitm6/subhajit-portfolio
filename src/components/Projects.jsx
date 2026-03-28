@@ -6,53 +6,53 @@ import { SiReact, SiLaravel, SiJavascript, SiMysql } from 'react-icons/si';
 const projects = [
   {
     title: 'Crypto Tracker',
-    subtitle: 'Real-time Crypto Market Dashboard',
+    subtitle: 'Market Dashboard',
     description:
-      'A modern cryptocurrency tracking application that provides real-time market data, price charts, and portfolio insights using the CoinGecko API with beautiful data visualizations.',
-    tech: ['React', 'CoinGecko API', 'React Google Charts', 'CSS3'],
-    icon: <SiReact className="w-8 h-8" />,
-    gradient: 'from-blue-500/20 to-cyan/20',
-    accentColor: 'text-cyan-light',
-    features: ['Real-time price tracking', 'Interactive charts', 'Market analytics', 'Responsive design'],
+      'A real-time cryptocurrency tracking application featuring live data visualizations and portfolio management.',
+    tech: ['React', 'API', 'Charts', 'Tailwind'],
+    icon: <SiReact className="w-10 h-10" />,
+    color: 'from-spidey-blue/40 to-black',
+    accentColor: 'text-spidey-blue',
+    glowColor: 'shadow-spidey-blue/20',
     liveUrl: 'https://subhajit-crypto-place.netlify.app/',
     githubUrl: 'https://github.com/subhajitm6/crypto-place',
   },
   {
-    title: 'Smart Expense Tracker',
-    subtitle: 'Budget Tracking Dashboard',
+    title: 'Smart Expense',
+    subtitle: 'Financial Intelligence',
     description:
-      'An intelligent expense tracking application with visual analytics, budget goals, and spending insights. Built with vanilla JavaScript for maximum performance.',
-    tech: ['JavaScript', 'LocalStorage', 'Chart.js', 'CSS3'],
-    icon: <SiJavascript className="w-8 h-8" />,
-    gradient: 'from-yellow-500/20 to-orange-500/20',
-    accentColor: 'text-yellow-400',
-    features: ['Budget tracking', 'Expense analytics', 'Charts & graphs', 'Data persistence'],
+      'Intelligent budget tracking system with visual analytics and data persistence for personal management.',
+    tech: ['JS', 'Charts', 'LocalDB'],
+    icon: <SiJavascript className="w-10 h-10" />,
+    color: 'from-spidey-red/40 to-black',
+    accentColor: 'text-spidey-red',
+    glowColor: 'shadow-spidey-red/20',
     liveUrl: 'https://cash-flow--msubhajit.replit.app',
     githubUrl: '',
   },
   {
-    title: 'Payroll Management System',
-    subtitle: 'Enterprise HR Solution',
+    title: 'Payroll System',
+    subtitle: 'Enterprise Core',
     description:
-      'A comprehensive payroll management system with role-based access control, automated salary calculations, leave management, and email notifications via PHPMailer.',
-    tech: ['Laravel', 'MySQL', 'PHPMailer', 'Bootstrap'],
-    icon: <SiLaravel className="w-8 h-8" />,
-    gradient: 'from-red-500/20 to-rose-500/20',
-    accentColor: 'text-red-400',
-    features: ['Role-based auth', 'Leave management', 'Salary slip generation', 'Email notifications'],
+      'A robust HR solution featuring automated calculations, role management, and encrypted storage.',
+    tech: ['Laravel', 'MySQL', 'PHP'],
+    icon: <SiLaravel className="w-10 h-10" />,
+    color: 'from-spidey-blue/40 to-black',
+    accentColor: 'text-spidey-blue',
+    glowColor: 'shadow-spidey-blue/20',
     liveUrl: '#',
     githubUrl: '#',
   },
   {
-    title: 'SEO Blog Platform',
-    subtitle: 'SEO Optimized Publishing Platform',
+    title: 'SEO Platform',
+    subtitle: 'Search Mastery',
     description:
-      'A fully SEO-optimized blog platform built with Laravel, featuring structured content, meta tag management, dynamic sitemaps, and robots.txt configuration.',
-    tech: ['Laravel', 'MySQL', 'SEO', 'Blade'],
-    icon: <SiMysql className="w-8 h-8" />,
-    gradient: 'from-accent/20 to-purple-500/20',
-    accentColor: 'text-accent-light',
-    features: ['SEO optimization', 'Meta tags', 'Sitemap generation', 'Structured content'],
+      'Fully optimized publishing system with dynamic sitemaps and advanced meta-management protocols.',
+    tech: ['Laravel', 'SEO', 'MySQL'],
+    icon: <SiMysql className="w-10 h-10" />,
+    color: 'from-spidey-red/40 to-black',
+    accentColor: 'text-spidey-red',
+    glowColor: 'shadow-spidey-red/20',
     liveUrl: '#',
     githubUrl: '#',
   },
@@ -62,123 +62,90 @@ const ProjectCard = ({ project, i, isInView }) => {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
-  const mouseXSpring = useSpring(x);
-  const mouseYSpring = useSpring(y);
-
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ['7deg', '-7deg']);
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ['-7deg', '7deg']);
+  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [10, -10]));
+  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-10, 10]));
 
   const handleMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
-
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
-
-    const xPct = mouseX / width - 0.5;
-    const yPct = mouseY / height - 0.5;
-
-    x.set(xPct);
-    y.set(yPct);
-  };
-
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
+    x.set((e.clientX - rect.left) / rect.width - 0.5);
+    y.set((e.clientY - rect.top) / rect.height - 0.5);
   };
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, delay: i * 0.15 }}
-      style={{
-        rotateX,
-        rotateY,
-        transformStyle: 'preserve-3d',
-      }}
+      transition={{ duration: 0.8, delay: i * 0.2 }}
+      className="group relative"
       onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className="glass rounded-none overflow-hidden group hover:border-accent/50 transition-colors duration-500 relative isolate tech-border"
+      onMouseLeave={() => { x.set(0); y.set(0); }}
+      style={{ perspective: 1000 }}
     >
-      <div className="h-full w-full relative z-10 bg-dark-800/50">
-        {/* Card Header with Gradient */}
-        <div className={`h-36 bg-gradient-to-br ${project.gradient} relative overflow-hidden flex items-center justify-center`}>
-          {/* Background Pattern */}
-          <div className="absolute inset-0 bg-grid opacity-30" />
-          {/* Floating Icon */}
-          <motion.div
-            whileHover={{ rotate: 360, scale: 1.2 }}
-            transition={{ duration: 0.6 }}
-            className={`relative z-10 ${project.accentColor} opacity-60 group-hover:opacity-100 transition-opacity`}
-          >
-            {project.icon}
-          </motion.div>
-          {/* Hover Overlay */}
-          <div className="absolute inset-0 bg-dark-900/0 group-hover:bg-dark-900/20 transition-all duration-500" />
+      <motion.div
+        style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
+        className="glass-card rounded-3xl overflow-hidden border border-white/5 hover:border-spidey-red/30 transition-all duration-500 shadow-2xl h-full flex flex-col"
+      >
+        {/* Card Header/Image Area */}
+        <div className={`h-48 bg-gradient-to-br ${project.color} relative overflow-hidden flex items-center justify-center p-8`}>
+           <div className="absolute inset-0 bg-web opacity-20 group-hover:opacity-40 transition-opacity" />
+           <motion.div 
+             style={{ translateZ: 50 }}
+             className={`relative z-10 ${project.accentColor} filter drop-shadow-[0_0_15px_currentColor]`}
+           >
+              {project.icon}
+           </motion.div>
+           
+           {/* Floating Light Effect */}
+           <div className="absolute -inset-2 bg-gradient-to-tr from-transparent via-white/5 to-transparent skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
         </div>
 
-        {/* Card Body */}
-        <div className="p-6 relative z-20">
-          <div className="mb-3">
-            <h3 className="text-xl font-bold text-white group-hover:text-accent transition-colors uppercase tracking-tight">
-              {project.title}
-            </h3>
-            <p className={`text-sm ${project.accentColor} font-medium mt-0.5`}>
-              {project.subtitle}
+        {/* Card Content */}
+        <div className="p-8 flex-1 flex flex-col" style={{ translateZ: 30 }}>
+            <div className="mb-4">
+              <h3 className="text-2xl font-bold text-white font-heading group-hover:text-spidey-red transition-colors">
+                {project.title}
+              </h3>
+              <p className={`text-xs font-display tracking-widest uppercase mt-1 ${project.accentColor}`}>
+                {project.subtitle}
+              </p>
+            </div>
+
+            <p className="text-sm text-slate-400 mb-6 leading-relaxed flex-1">
+              {project.description}
             </p>
-          </div>
 
-          <p className="text-sm text-dark-300 mb-4 line-clamp-2">
-            {project.description}
-          </p>
+            {/* Tech Cluster */}
+            <div className="flex flex-wrap gap-2 mb-8">
+              {project.tech.map((t) => (
+                <span key={t} className="text-[9px] font-bold text-slate-500 border border-white/10 px-2 py-0.5 rounded tracking-tighter uppercase group-hover:border-spidey-blue/30 group-hover:text-slate-300 transition-colors">
+                  {t}
+                </span>
+              ))}
+            </div>
 
-          {/* Features */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 mb-4 relative z-20">
-            {project.features.map((f) => (
-              <span key={f} className="text-xs text-dark-300 flex items-center gap-1.5">
-                <span className="w-1 h-1 bg-accent rounded-none rotate-45" />
-                {f}
-              </span>
-            ))}
-          </div>
-
-          {/* Tech Tags */}
-          <div className="flex flex-wrap gap-2 mb-5 relative z-20">
-            {project.tech.map((t) => (
-              <span
-                key={t}
-                className="px-2.5 py-0.5 text-[10px] font-mono border border-white/10 bg-white/5 text-dark-200 uppercase tracking-tighter"
+            {/* Actions */}
+            <div className="flex gap-4" style={{ translateZ: 40 }}>
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 btn-spidey py-2 text-[10px] text-center flex items-center justify-center gap-2"
               >
-                {t}
-              </span>
-            ))}
-          </div>
-
-          {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-3 relative z-50">
-            <a
-              href={project.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 flex items-center justify-center gap-2 py-2 rounded-none bg-accent/10 border border-accent/20 text-accent text-xs font-bold uppercase tracking-widest hover:bg-accent hover:text-dark-950 transition-all cursor-pointer"
-            >
-              <HiExternalLink className="w-4 h-4" />
-              DEPLOY DEMO
-            </a>
-            <a
-              href={project.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 flex items-center justify-center gap-2 py-2 rounded-none bg-white/5 border border-white/10 text-dark-200 text-xs font-bold uppercase tracking-widest hover:bg-white/10 transition-all cursor-pointer"
-            >
-              <HiCode className="w-4 h-4" />
-              SOURCE_CODE
-            </a>
-          </div>
+                <HiExternalLink className="w-4 h-4" />
+                DEMO
+              </a>
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 btn-outline-spidey py-2 text-[10px] text-center flex items-center justify-center gap-2 border-white/10 text-white hover:border-spidey-blue"
+              >
+                <HiCode className="w-4 h-4" />
+                CODE
+              </a>
+            </div>
         </div>
-      </div>
+      </motion.div>
     </motion.div>
   );
 };
@@ -188,31 +155,31 @@ const Projects = () => {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="projects" className="section-padding relative overflow-hidden" ref={ref}>
-      <div className="glow-orb w-[500px] h-[500px] bg-accent left-[-200px] bottom-[10%]" />
+    <section id="projects" className="section-padding relative bg-spidey-dark overflow-hidden" ref={ref}>
+      {/* Background Web pattern corner */}
+      <div className="absolute bottom-0 left-0 w-96 h-96 opacity-10 pointer-events-none">
+        <div className="absolute bottom-[-50px] left-[-50px] w-full h-full border-b border-l border-spidey-red rounded-full" />
+      </div>
 
-      <div className="max-w-6xl mx-auto relative cursor-none sm:cursor-auto" style={{ perspective: '1000px' }}>
+      <div className="max-w-6xl mx-auto relative z-10">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={isInView ? { opacity: 1, scale: 1 } : {}}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-20"
         >
-          <span className="text-xs font-mono text-accent uppercase tracking-[0.3em]">
-            &gt; Cataloging Achievements
+          <span className="text-sm font-display text-spidey-red uppercase tracking-[0.4em] mb-4 block">
+            System Builds
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold mt-3 mb-4 uppercase tracking-tighter">
-            System <span className="gradient-text">Builds</span>
+          <h2 className="text-4xl md:text-6xl font-bold font-heading text-white">
+            Core <span className="text-spidey-blue">Projects</span>
           </h2>
-          <div className="w-24 h-[2px] bg-gradient-to-r from-transparent via-accent to-transparent mx-auto" />
-          <p className="text-dark-300 mt-4 max-w-xl mx-auto">
-            A selection of projects that showcase my skills in full-stack development
-          </p>
+          <div className="w-24 h-1 bg-spidey-red mx-auto mt-6 rounded-full shadow-[0_0_10px_#E11D48]" />
         </motion.div>
 
         {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 gap-6" style={{ perspective: '1000px' }}>
+        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-10">
           {projects.map((project, i) => (
             <ProjectCard key={project.title} project={project} i={i} isInView={isInView} />
           ))}

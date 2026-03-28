@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { HiArrowDown, HiDownload, HiMail } from 'react-icons/hi';
+import { HiArrowDown, HiDownload } from 'react-icons/hi';
 import { Link } from 'react-scroll';
 import { TypeAnimation } from 'react-type-animation';
 
@@ -7,139 +7,133 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden animated-gradient"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-spidey-black"
     >
-      {/* Animated Background Orbs */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="glow-orb w-[500px] h-[500px] bg-accent top-[-100px] left-[-100px] animate-float" />
-        <div className="glow-orb w-[400px] h-[400px] bg-robotic-green top-[60%] right-[-80px] animate-float-slow" />
-        <div className="glow-orb w-[300px] h-[300px] bg-robotic-purple bottom-[-50px] left-[40%] animate-float-slower" />
+      {/* Cinematic Background Glows */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-spidey-red/20 blur-[150px] rounded-full animate-pulse-glow" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-spidey-blue/20 blur-[150px] rounded-full animate-pulse-glow" style={{ animationDelay: '2s' }} />
       </div>
 
-      {/* Grid Overlay */}
-      <div className="absolute inset-0 bg-grid opacity-40" />
+      {/* Floating Particles/Dust */}
+      <div className="absolute inset-0 pointer-events-none">
+        {[...Array(20)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute bg-white/10 rounded-full animate-particle-float"
+            style={{
+              width: Math.random() * 4 + 'px',
+              height: Math.random() * 4 + 'px',
+              left: Math.random() * 100 + '%',
+              top: Math.random() * 100 + '%',
+              animationDelay: Math.random() * 10 + 's',
+              animationDuration: (Math.random() * 10 + 15) + 's'
+            }}
+          />
+        ))}
+      </div>
 
-      {/* Radial Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-radial from-transparent via-dark-900/50 to-dark-900" />
+      {/* Subtle Web Overlay */}
+      <div className="absolute inset-0 opacity-10 pointer-events-none bg-web" />
+
+      {/* Web Swing Line Component */}
+      <motion.div 
+        className="absolute top-0 right-[15%] w-[1px] h-[300px] bg-white/20 origin-top animate-web-swing hidden md:block"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1 }}
+      >
+        <div className="absolute bottom-0 left-[-4px] w-2 h-2 rounded-full bg-spidey-red shadow-[0_0_10px_#E11D48]" />
+      </motion.div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center">
-        {/* Status Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-none glass tech-border mb-8"
-        >
-          <span className="w-2 h-2 bg-robotic-green rounded-none animate-pulse shadow-[0_0_5px_#39ff14]" />
-          <span className="text-xs uppercase tracking-[0.2em] text-accent font-bold">System Status: ONLINE</span>
-        </motion.div>
-
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center">
         {/* Name */}
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.15 }}
-          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-4 tracking-tight"
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-5xl sm:text-7xl md:text-8xl font-bold mb-6 tracking-tight font-heading"
         >
           <span className="text-white">Hi, I'm </span>
-          <span className="gradient-text">Subhajit</span>
+          <span className="text-spidey-red drop-shadow-[0_0_15px_rgba(225,29,72,0.5)]">Subhajit Manna</span>
         </motion.h1>
 
-        {/* Title */}
+        {/* Typing Animation Subheading */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="mb-6 min-h-[60px] sm:min-h-[40px] flex items-center justify-center px-2"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="mb-8 min-h-[40px] flex items-center justify-center"
         >
-          <span className="text-base sm:text-2xl md:text-3xl font-mono text-accent-light px-2 font-medium text-center">
+          <h2 className="text-xl sm:text-3xl font-display text-spidey-blue tracking-widest uppercase">
+            Full Stack Developer
+          </h2>
+        </motion.div>
+        
+        <motion.div
+           initial={{ opacity: 0 }}
+           animate={{ opacity: 1 }}
+           transition={{ delay: 0.6 }}
+           className="mb-10"
+        >
+          <span className="text-lg sm:text-2xl font-light text-slate-300 italic opacity-80">
             <TypeAnimation
               sequence={[
-                'Full Stack Developer',
+                'I build fast, scalable, and modern web apps',
                 2000,
-                'React & Laravel Developer',
+                'Design with speed, deploy with precision',
                 2000,
-                'UI/UX Enthusiast',
+                'Crafting digital experiences that stick',
                 2000,
               ]}
               wrapper="span"
               speed={50}
               repeat={Infinity}
+              className="typing-cursor"
             />
           </span>
         </motion.div>
 
-        {/* Intro */}
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.45 }}
-          className="text-lg sm:text-xl text-dark-200 max-w-2xl mx-auto mb-10 leading-relaxed"
-        >
-          I build modern, scalable web applications with clean architecture
-          and beautiful user experiences.
-        </motion.p>
-
-        {/* Buttons */}
+        {/* Action Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 w-full"
+          transition={{ duration: 0.8, delay: 0.9 }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-6"
         >
           <Link to="projects" smooth duration={500} offset={-80} className="w-full sm:w-auto">
-            <button className="w-full sm:w-auto justify-center btn-primary text-white flex items-center gap-2 group">
+            <button className="w-full sm:w-auto btn-spidey group flex items-center justify-center gap-2">
               <span>View Projects</span>
-              <HiArrowDown className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
+              <HiArrowDown className="w-4 h-4 group-hover:translate-y-1 transition-transform" />
             </button>
           </Link>
 
-          <a href="/resume.pdf" className="w-full sm:w-auto justify-center btn-outline flex items-center gap-2" download>
-            <HiDownload className="w-4 h-4" />
-            <span>Download Resume</span>
+          <a href="/resume.pdf" className="w-full sm:w-auto" download>
+            <button className="w-full sm:w-auto btn-outline-spidey flex items-center justify-center gap-2">
+              <HiDownload className="w-4 h-4" />
+              <span>Download Resume</span>
+            </button>
           </a>
-
-          <Link to="contact" smooth duration={500} offset={-80} className="w-full sm:w-auto">
-            <button className="w-full sm:w-auto justify-center btn-outline flex items-center gap-2 !border-robotic-green/40 !text-robotic-green hover:!bg-robotic-green/10">
-              <HiMail className="w-4 h-4" />
-              <span>Initialize COMMS</span>
-            </button>
-          </Link>
-        </motion.div>
-
-        {/* Tech Stack Mini */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1 }}
-          className="mt-16 flex items-center justify-center gap-6 flex-wrap"
-        >
-          <span className="text-sm text-dark-400 uppercase tracking-wider">Tech Stack</span>
-          <div className="h-px w-8 bg-dark-500" />
-          {['React', 'Laravel', 'JavaScript', 'PHP', 'MySQL', 'Tailwind'].map((tech) => (
-            <span key={tech} className="text-sm text-dark-300 font-mono hover:text-accent-light transition-colors cursor-default">
-              {tech}
-            </span>
-          ))}
         </motion.div>
       </div>
 
-      {/* Scroll Indicator */}
+      {/* Corner Web Decoration */}
+      <div className="absolute top-0 right-0 w-64 h-64 opacity-20 pointer-events-none overflow-hidden">
+        <div className="absolute top-[-50px] right-[-50px] w-full h-full border-[1px] border-spidey-red rounded-full rotate-45" />
+        <div className="absolute top-[-30px] right-[-30px] w-full h-full border-[1px] border-spidey-red rounded-full rotate-45" />
+      </div>
+
+      {/* Scroll Down Indicator */}
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        animate={{ y: [0, 10, 0] }}
+        transition={{ duration: 2, repeat: Infinity }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 cursor-pointer opacity-50 hover:opacity-100 transition-opacity"
       >
-        <Link to="about" smooth duration={500} className="cursor-pointer">
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="w-5 h-9 rounded-none border-2 border-accent/40 flex justify-center pt-2"
-          >
-            <div className="w-1 h-3 bg-accent rounded-none" />
-          </motion.div>
+        <Link to="about" smooth duration={500}>
+          <div className="w-6 h-10 border-2 border-white/20 rounded-full flex justify-center pt-2">
+            <div className="w-1 h-2 bg-spidey-red rounded-full" />
+          </div>
         </Link>
       </motion.div>
     </section>

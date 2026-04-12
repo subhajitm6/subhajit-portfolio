@@ -2,6 +2,7 @@ import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { HiMail, HiPhone, HiLocationMarker } from 'react-icons/hi';
 import { FaLinkedinIn } from 'react-icons/fa';
+import emailjs from '@emailjs/browser';
 
 const contactInfo = [
   {
@@ -28,15 +29,103 @@ const Contact = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState({ type: '', message: '' });
+
+  const validate = () => {
+    let newErrors = {};
+
+    if (!formData.name.trim()) {
+      newErrors.name = 'Full identity name is required';
+    }
+
+    if (!formData.email.trim()) {
+      newErrors.email = 'Transmission frequency (email) is required';
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.email)) {
+      newErrors.email = 'Invalid frequency format (email)';
+    }
+
+    if (!formData.message.trim()) {
+      newErrors.message = 'Transmission content (message) is required';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+    // Clear error for this field as user types
+    if (errors[name]) {
+      setErrors({ ...errors, [name]: '' });
+    }
+    // Clear status message when user starts typing again
+    if (status.message) {
+      setStatus({ type: '', message: '' });
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const mailtoLink = `mailto:subhajitmanna367@gmail.com?subject=Portfolio Contact from ${formData.name}&body=${encodeURIComponent(formData.message)}%0A%0AFrom: ${formData.email}`;
-    window.open(mailtoLink);
+
+    if (!validate()) return;
+
+    setIsSubmitting(true);
+    setStatus({ type: 'info', message: 'Initiating transmission...' });
+
+    // Use environment variables for EmailJS
+    const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+    // Debugging: Log configuration status (avoiding sensitive values in clear text if possible, but identifying if they exist)
+    console.log('--- EmailJS Handshake ---');
+    console.log('Service ID status:', serviceID ? 'Loaded' : 'Missing');
+    console.log('Template ID status:', templateID ? 'Loaded' : 'Missing');
+    console.log('Public Key status:', publicKey ? 'Loaded' : 'Missing');
+
+    // Check for missing environment variables
+    if (!serviceID || !templateID || !publicKey) {
+      console.error('Critical Error: EmailJS environment variables are missing!', {
+        serviceID: serviceID ? 'PRESENT' : 'MISSING',
+        templateID: templateID ? 'PRESENT' : 'MISSING',
+        publicKey: publicKey ? 'PRESENT' : 'MISSING',
+      });
+      setStatus({ type: 'error', message: 'Configuration error. Transmission aborted.' });
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Parameters MUST match EmailJS template variables exactly
+    const templateParams = {
+      name: formData.name,
+      email: formData.email,
+      message: formData.message,
+      reply_to: formData.email,
+      to_email: 'subhajitmanna367@gmail.com',
+    };
+
+    console.log('Sending payload:', templateParams);
+
+    emailjs.send(serviceID, templateID, templateParams, publicKey)
+      .then((response) => {
+        console.log('TRANSMISSION SUCCESSFUL:', response.status, response.text);
+        setStatus({ type: 'success', message: 'Message sent successfully!' });
+        setFormData({ name: '', email: '', message: '' });
+      })
+      .catch((err) => {
+        console.error('TRANSMISSION FAILED:', err);
+        // Log detailed error for debugging 422
+        if (err.text) {
+          console.error('EmailJS Error Details:', err.text);
+        }
+        setStatus({ type: 'error', message: 'Message failed to send. Please check your connection.' });
+      })
+      .finally(() => {
+        setIsSubmitting(false);
+      });
   };
 
   return (
@@ -82,10 +171,10 @@ const Contact = () => {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    required
                     placeholder="Full Name"
-                    className="w-full px-5 py-4 rounded-xl bg-slate-900/50 border border-white/5 text-white placeholder-slate-600 focus:border-spidey-red/50 focus:outline-none focus:ring-1 focus:ring-spidey-red/20 transition-all text-sm"
+                    className={`w-full px-5 py-4 rounded-xl bg-slate-900/50 border ${errors.name ? 'border-spidey-red/70' : 'border-white/5'} text-white placeholder-slate-600 focus:border-spidey-red/50 focus:outline-none focus:ring-1 focus:ring-spidey-red/20 transition-all text-sm`}
                   />
+                  {errors.name && <p className="text-spidey-red text-[10px] uppercase tracking-wider ml-1">{errors.name}</p>}
                 </div>
                 <div className="space-y-2">
                   <label className="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">Frequency</label>
@@ -94,10 +183,10 @@ const Contact = () => {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    required
                     placeholder="Email Address"
-                    className="w-full px-5 py-4 rounded-xl bg-slate-900/50 border border-white/5 text-white placeholder-slate-600 focus:border-spidey-red/50 focus:outline-none focus:ring-1 focus:ring-spidey-red/20 transition-all text-sm"
+                    className={`w-full px-5 py-4 rounded-xl bg-slate-900/50 border ${errors.email ? 'border-spidey-red/70' : 'border-white/5'} text-white placeholder-slate-600 focus:border-spidey-red/50 focus:outline-none focus:ring-1 focus:ring-spidey-red/20 transition-all text-sm`}
                   />
+                  {errors.email && <p className="text-spidey-red text-[10px] uppercase tracking-wider ml-1">{errors.email}</p>}
                 </div>
               </div>
               <div className="space-y-2">
@@ -106,24 +195,35 @@ const Contact = () => {
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  required
                   rows={5}
                   placeholder="Your message goes here..."
-                  className="w-full px-5 py-4 rounded-xl bg-slate-900/50 border border-white/5 text-white placeholder-slate-600 focus:border-spidey-red/50 focus:outline-none focus:ring-1 focus:ring-spidey-red/20 transition-all text-sm resize-none"
+                  className={`w-full px-5 py-4 rounded-xl bg-slate-900/50 border ${errors.message ? 'border-spidey-red/70' : 'border-white/5'} text-white placeholder-slate-600 focus:border-spidey-red/50 focus:outline-none focus:ring-1 focus:ring-spidey-red/20 transition-all text-sm resize-none`}
                 />
+                {errors.message && <p className="text-spidey-red text-[10px] uppercase tracking-wider ml-1">{errors.message}</p>}
               </div>
+
+              {status.message && (
+                <div className={`text-center py-2 px-4 rounded-lg text-sm font-medium ${status.type === 'success' ? 'bg-green-500/10 text-green-500 border border-green-500/20' :
+                  status.type === 'error' ? 'bg-spidey-red/10 text-spidey-red border border-spidey-red/20' :
+                    'bg-spidey-blue/10 text-spidey-blue border border-spidey-blue/20'
+                  }`}>
+                  {status.message}
+                </div>
+              )}
+
               <motion.button
                 type="submit"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="btn-spidey w-full py-4 text-base shadow-[0_0_20px_rgba(225,29,72,0.3)] hover:shadow-[0_0_30px_rgba(225,29,72,0.5)] transition-all"
+                disabled={isSubmitting}
+                whileHover={!isSubmitting ? { scale: 1.02 } : {}}
+                whileTap={!isSubmitting ? { scale: 0.98 } : {}}
+                className={`btn-spidey w-full py-4 text-base shadow-[0_0_20px_rgba(225,29,72,0.3)] transition-all ${isSubmitting ? 'opacity-70 cursor-not-allowed grayscale' : 'hover:shadow-[0_0_30px_rgba(225,29,72,0.5)]'}`}
               >
-                Send Transmission
+                {isSubmitting ? 'Transmitting...' : 'Send Transmission'}
               </motion.button>
-              
+
               {/* Web corner Decoration */}
               <div className="absolute top-0 right-0 w-32 h-32 opacity-5 pointer-events-none">
-                 <div className="absolute top-[-20px] right-[-20px] w-full h-full border-t border-r border-spidey-red rounded-tr-[50px]" />
+                <div className="absolute top-[-20px] right-[-20px] w-full h-full border-t border-r border-spidey-red rounded-tr-[50px]" />
               </div>
             </form>
           </motion.div>

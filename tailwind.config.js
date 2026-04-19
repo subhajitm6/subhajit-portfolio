@@ -33,6 +33,7 @@ export default {
         'pulse-glow': 'pulse-glow 3s ease-in-out infinite alternate',
         'web-swing': 'web-swing 4s ease-in-out infinite',
         'particle-float': 'particle-float 20s linear infinite',
+        'tilt': 'tilt 10s infinite linear',
       },
       keyframes: {
         float: {
@@ -52,6 +53,11 @@ export default {
           '10%': { opacity: '0.3' },
           '90%': { opacity: '0.3' },
           '100%': { transform: 'translateY(-100vh) translateX(50px)', opacity: '0' },
+        },
+        tilt: {
+          '0%, 50%, 100%': { transform: 'rotate(0deg)' },
+          '25%': { transform: 'rotate(0.5deg)' },
+          '75%': { transform: 'rotate(-0.5deg)' },
         },
       },
       backdropBlur: {

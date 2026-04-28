@@ -2,7 +2,6 @@ import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { HiMail, HiPhone, HiLocationMarker } from 'react-icons/hi';
 import { FaLinkedinIn } from 'react-icons/fa';
-import emailjs from '@emailjs/browser';
 
 const contactInfo = [
   {
@@ -67,7 +66,7 @@ const Contact = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!validate()) return;
@@ -75,57 +74,47 @@ const Contact = () => {
     setIsSubmitting(true);
     setStatus({ type: 'info', message: 'Initiating transmission...' });
 
-    // Use environment variables for EmailJS
-    const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-    const templateID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+    // Use environment variable for Web3Forms access key
+    const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
 
-    // Debugging: Log configuration status (avoiding sensitive values in clear text if possible, but identifying if they exist)
-    console.log('--- EmailJS Handshake ---');
-    console.log('Service ID status:', serviceID ? 'Loaded' : 'Missing');
-    console.log('Template ID status:', templateID ? 'Loaded' : 'Missing');
-    console.log('Public Key status:', publicKey ? 'Loaded' : 'Missing');
-
-    // Check for missing environment variables
-    if (!serviceID || !templateID || !publicKey) {
-      console.error('Critical Error: EmailJS environment variables are missing!', {
-        serviceID: serviceID ? 'PRESENT' : 'MISSING',
-        templateID: templateID ? 'PRESENT' : 'MISSING',
-        publicKey: publicKey ? 'PRESENT' : 'MISSING',
-      });
+    if (!accessKey) {
+      console.error('Critical Error: Web3Forms access key is missing!');
       setStatus({ type: 'error', message: 'Configuration error. Transmission aborted.' });
       setIsSubmitting(false);
       return;
     }
 
-    // Parameters MUST match EmailJS template variables exactly
-    const templateParams = {
-      name: formData.name,
-      email: formData.email,
-      message: formData.message,
-      reply_to: formData.email,
-      to_email: 'subhajitmanna367@gmail.com',
-    };
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        }),
+      });
 
-    console.log('Sending payload:', templateParams);
+      const result = await response.json();
 
-    emailjs.send(serviceID, templateID, templateParams, publicKey)
-      .then((response) => {
-        console.log('TRANSMISSION SUCCESSFUL:', response.status, response.text);
+      if (result.success) {
+        console.log('TRANSMISSION SUCCESSFUL:', result);
         setStatus({ type: 'success', message: 'Message sent successfully!' });
         setFormData({ name: '', email: '', message: '' });
-      })
-      .catch((err) => {
-        console.error('TRANSMISSION FAILED:', err);
-        // Log detailed error for debugging 422
-        if (err.text) {
-          console.error('EmailJS Error Details:', err.text);
-        }
-        setStatus({ type: 'error', message: 'Message failed to send. Please check your connection.' });
-      })
-      .finally(() => {
-        setIsSubmitting(false);
-      });
+      } else {
+        console.error('TRANSMISSION FAILED:', result);
+        setStatus({ type: 'error', message: result.message || 'Message failed to send. Please try again.' });
+      }
+    } catch (err) {
+      console.error('TRANSMISSION FAILED:', err);
+      setStatus({ type: 'error', message: 'Message failed to send. Please check your connection.' });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (

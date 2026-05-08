@@ -30,6 +30,33 @@ function App() {
     return () => window.removeEventListener('click', handleClick);
   }, []);
 
+  useEffect(() => {
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          console.log('Visitor location captured:', {
+            latitude,
+            longitude,
+            timestamp: new Date(position.timestamp).toISOString()
+          });
+        },
+        (error) => {
+          // Log permission denial or other errors gracefully
+          console.log('Visitor geolocation access declined or unavailable:', error.message);
+        },
+        {
+          enableHighAccuracy: true,
+          timeout: 10000,
+          maximumAge: 0,
+        }
+      );
+    } else {
+      console.log('Geolocation is not supported by this browser.');
+    }
+  }, []);
+
+
   return (
     <div className="relative bg-spidey-dark min-h-screen overflow-x-hidden transition-colors duration-500">
       <Navbar />

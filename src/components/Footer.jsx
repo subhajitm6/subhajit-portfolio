@@ -1,4 +1,5 @@
 import { FaGithub, FaLinkedinIn, FaInstagram, FaEnvelope } from 'react-icons/fa';
+import logo from '../assets/logo.png';
 
 const Footer = () => {
   return (
@@ -25,16 +26,21 @@ const Footer = () => {
               { icon: <FaLinkedinIn />, href: 'https://www.linkedin.com/in/subhajit-manna-1608651a9/', label: 'LinkedIn', color: 'hover:text-spidey-blue hover:shadow-spidey-blue/40' },
               { icon: <FaInstagram />, href: 'https://www.instagram.com/hiii_subha/', label: 'Instagram', color: 'hover:text-spidey-red hover:shadow-spidey-red/40' },
               { icon: <FaEnvelope />, href: 'mailto:subhajitmanna367@gmail.com', label: 'Email', color: 'hover:text-spidey-blue hover:shadow-spidey-blue/40' },
+              { isImage: true, icon: logo, href: 'https://nexmindx.onrender.com/', label: 'NexMindX', color: 'hover:shadow-spidey-red/40' },
             ].map((s) => (
               <a
                 key={s.label}
                 href={s.href}
-                target="_blank"
-                rel="noopener noreferrer"
+                target={s.href.startsWith('http') || s.href.startsWith('mailto') ? '_blank' : '_self'}
+                rel={s.href.startsWith('http') || s.href.startsWith('mailto') ? 'noopener noreferrer' : ''}
                 aria-label={s.label}
                 className={`w-12 h-12 rounded-xl glass-card flex items-center justify-center text-slate-400 border border-white/5 transition-all duration-300 hover:-translate-y-2 shadow-lg ${s.color}`}
               >
-                <div className="text-xl">{s.icon}</div>
+                {s.isImage ? (
+                  <img src={s.icon} alt={s.label} className="w-7 h-7 object-contain rounded" />
+                ) : (
+                  <div className="text-xl">{s.icon}</div>
+                )}
               </a>
             ))}
           </div>

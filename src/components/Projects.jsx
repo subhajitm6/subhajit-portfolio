@@ -127,7 +127,7 @@ const projects = [
       'Live crypto ticker feeds with interactive pricing charts',
       'Clean responsive layout with instant search and trending metrics',
     ],
-    liveUrl: 'https://subhajit-crypto-place.netlify.app/',
+    liveUrl: 'https://crypto-place-28xa.onrender.com/',
     githubUrl: 'https://github.com/subhajitm6/crypto-place',
   },
   {

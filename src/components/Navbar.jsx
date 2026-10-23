@@ -9,6 +9,8 @@ const navLinks = [
   { name: 'Skills', to: 'skills' },
   { name: 'Experience', to: 'experience' },
   { name: 'Projects', to: 'projects' },
+  { name: 'Education', to: 'education' },
+  { name: 'Certifications', to: 'certifications' },
   { name: 'Contact', to: 'contact' },
 ];
 
@@ -54,8 +56,8 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-8">
-            <div className="flex items-center gap-1 bg-white/5 p-1 rounded-full border border-white/5">
+          <div className="hidden lg:flex items-center gap-4 xl:gap-6">
+            <div className="flex items-center gap-0.5 bg-white/5 p-1 rounded-full border border-white/5">
                 {navLinks.map((link) => (
                     <Link
                         key={link.name}
@@ -65,7 +67,7 @@ const Navbar = () => {
                         offset={-80}
                         spy
                         activeClass="!text-white !bg-spidey-red shadow-[0_0_15px_rgba(225,29,72,0.4)]"
-                        className="px-5 py-2 text-[10px] font-bold text-slate-400 hover:text-white cursor-pointer transition-all duration-300 rounded-full uppercase tracking-widest font-display"
+                        className="px-3 xl:px-4 py-2 text-[10px] xl:text-[11px] font-bold text-slate-400 hover:text-white cursor-pointer transition-all duration-300 rounded-full uppercase tracking-wider font-display whitespace-nowrap"
                     >
                         {link.name}
                     </Link>
@@ -76,16 +78,17 @@ const Navbar = () => {
                 to="contact"
                 smooth
                 duration={500}
-                className="btn-spidey text-[10px] px-6 py-2 rounded-full cursor-pointer shadow-lg hover:shadow-spidey-red/40"
+                className="btn-spidey text-[10px] xl:text-[11px] px-5 py-2 rounded-full cursor-pointer shadow-lg hover:shadow-spidey-red/40 whitespace-nowrap flex-shrink-0"
             >
               SIGNAL ME
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Button (visible on md and below) */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden p-2 text-2xl text-white hover:text-spidey-red transition-colors bg-white/5 rounded-lg border border-white/10"
+            className="lg:hidden p-2 text-2xl text-white hover:text-spidey-red transition-colors bg-white/5 rounded-lg border border-white/10"
+            aria-label="Toggle menu"
           >
             {mobileOpen ? <HiX /> : <HiMenuAlt3 />}
           </button>
@@ -98,7 +101,7 @@ const Navbar = () => {
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 50 }}
-              className="fixed top-20 right-6 w-64 bg-spidey-dark/95 backdrop-blur-2xl rounded-3xl border border-white/10 overflow-hidden shadow-2xl z-[70] md:hidden"
+              className="fixed top-20 right-6 w-64 bg-spidey-dark/95 backdrop-blur-2xl rounded-3xl border border-white/10 overflow-hidden shadow-2xl z-[70] lg:hidden"
             >
               <div className="p-6 flex flex-col gap-2">
                 {navLinks.map((link) => (

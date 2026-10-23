@@ -4,30 +4,59 @@ import { HiBriefcase, HiCalendar, HiLocationMarker } from 'react-icons/hi';
 
 const experiences = [
   {
-    company: 'SIGILO TECHNOLOGY PVT. LTD.',
-    role: 'Power Apps Developer',
-    period: 'Jul 2023 – Feb 2024',
-    location: 'India',
-    description: [
-      'Built an end-to-end inspection form system using Microsoft Power Apps, streamlining field operations and data collection workflows',
-      'Integrated SharePoint for centralized document storage and management, enabling seamless access across teams',
-      'Implemented complex validation rules and dynamic form logic to ensure data accuracy and scalability',
-      'Collaborated with cross-functional teams to gather requirements and deliver production-ready solutions',
-    ],
-    tech: ['Power Apps', 'SharePoint', 'Microsoft Dataverse', 'Office 365'],
-  },
-  {
     company: 'BWJ TECH SOLUTIONS PVT. LTD.',
     role: 'Full Stack Developer',
-    period: 'Present',
+    period: '2025 – Present',
     location: 'India',
-    description: [
-      'Developing scalable web applications using Laravel and React.js with focus on clean architecture',
-      'Building RESTful APIs and integrating frontend components with robust backend services',
-      'Implementing responsive designs using Tailwind CSS and modern UI/UX principles',
-      'Working with MySQL databases, optimizing queries for performance and reliability',
+    summary: 'Building secure, data-driven web applications, REST APIs, and automated enterprise workflows using Laravel, React.js, and MySQL.',
+    projects: [
+      {
+        name: 'SaaS API Test Automation Platform',
+        tech: ['Laravel', 'React.js', 'Swagger', 'MySQL'],
+        points: [
+          'Built a SaaS platform for automated API testing with Swagger-based test generation, reducing manual testing effort by 70%.',
+          'Implemented real-time execution monitoring, pass/fail analytics, response-time tracking, and automated PDF reports, improving debugging efficiency by 55%.',
+          'Developed reusable dashboard components, reducing repetitive frontend development work by 35%.',
+        ],
+      },
+      {
+        name: 'HR & Payroll Automation Portal',
+        tech: ['Laravel', 'MySQL', 'AJAX', 'jQuery'],
+        points: [
+          'Developed a role-based payroll management system covering employee management, attendance, leave, reimbursements, salary calculations, deductions, and bonuses, reducing manual processing effort by 60%.',
+          'Automated payslip generation, email notifications, and monthly reporting, improving payroll efficiency by 50%.',
+          'Implemented AJAX filtering, live status updates, dashboards, and PDF exports, reducing employee data retrieval time by 40%.',
+        ],
+      },
+      {
+        name: 'Retail Sales & Order Management System',
+        tech: ['Laravel', 'MySQL', 'AJAX', 'jQuery'],
+        points: [
+          'Centralized product, sales, customer, and order management, reducing manual administrative work by 50%.',
+          'Automated invoicing, email notifications, sales analytics, and customer loyalty tracking, improving operational efficiency by 45%.',
+        ],
+      },
     ],
-    tech: ['Laravel', 'React.js', 'MySQL', 'Tailwind CSS', 'PHP'],
+    tech: ['Laravel', 'PHP', 'React.js', 'MySQL', 'REST APIs', 'Swagger', 'AJAX', 'jQuery'],
+  },
+  {
+    company: 'SIGILO TECHNOLOGY PVT. LTD.',
+    role: 'Power Apps Developer',
+    period: '2023 – 2024',
+    location: 'India',
+    summary: 'Engineered model-driven enterprise workflows and standardized digital inspection systems.',
+    projects: [
+      {
+        name: 'Digital Inspection & Document Management App',
+        tech: ['Microsoft Power Apps', 'SharePoint'],
+        points: [
+          'Developed a model-driven inspection form with predefined fields, validation rules, and structured workflows, reducing manual data entry by 50%.',
+          'Integrated Power Apps with SharePoint for centralized document management, reducing document retrieval time by 40%.',
+          'Standardized inspection workflows and validation controls, reducing inaccurate data entries by 45%.',
+        ],
+      },
+    ],
+    tech: ['Microsoft Power Apps', 'SharePoint', 'Microsoft Dataverse', 'Workflows'],
   },
 ];
 
@@ -96,7 +125,7 @@ const Experience = () => {
                     <div className="mb-4">
                       <div className="flex items-center justify-between mb-2">
                         <h3 className="text-xl font-bold text-white font-heading group-hover:text-spidey-red transition-colors">{exp.role}</h3>
-                        <span className="text-[10px] font-display text-spidey-blue bg-spidey-blue/10 px-2 py-1 rounded">
+                        <span className="text-[10px] font-display text-spidey-blue bg-spidey-blue/10 px-2.5 py-1 rounded-full border border-spidey-blue/20">
                            {exp.period}
                         </span>
                       </div>
@@ -109,22 +138,48 @@ const Experience = () => {
                       {exp.location}
                     </div>
 
-                    {/* Highlights */}
-                    <ul className="space-y-3 mb-6">
-                      {exp.description.map((d, j) => (
-                        <li key={j} className="text-sm text-slate-300 flex items-start gap-3 leading-relaxed">
-                          <span className="w-1.5 h-1.5 bg-spidey-red rounded-full mt-1.5 flex-shrink-0 animate-pulse" />
-                          {d}
-                        </li>
-                      ))}
-                    </ul>
+                    {exp.summary && (
+                      <p className="text-xs text-slate-300 italic mb-5 leading-relaxed bg-white/5 p-3 rounded-lg border-l-2 border-spidey-blue">
+                        {exp.summary}
+                      </p>
+                    )}
+
+                    {/* Projects under this experience */}
+                    {exp.projects && exp.projects.length > 0 && (
+                      <div className="space-y-5 mb-6">
+                        {exp.projects.map((proj, pIdx) => (
+                          <div key={pIdx} className="bg-slate-900/40 p-4 rounded-xl border border-white/5">
+                            <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+                              <h4 className="text-sm font-bold text-slate-100 font-heading">
+                                {proj.name}
+                              </h4>
+                              <div className="flex flex-wrap gap-1">
+                                {proj.tech.map((t) => (
+                                  <span key={t} className="text-[9px] px-1.5 py-0.5 rounded bg-white/5 text-slate-400 font-mono">
+                                    {t}
+                                  </span>
+                                ))}
+                              </div>
+                            </div>
+                            <ul className="space-y-2 mt-2">
+                              {proj.points.map((pt, ptIdx) => (
+                                <li key={ptIdx} className="text-xs text-slate-300 flex items-start gap-2.5 leading-relaxed">
+                                  <span className="w-1.5 h-1.5 bg-spidey-red rounded-full mt-1.5 flex-shrink-0 animate-pulse" />
+                                  <span>{pt}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
+                      </div>
+                    )}
 
                     {/* Tech used */}
                     <div className="flex flex-wrap gap-2 border-t border-white/5 pt-4">
                       {exp.tech.map((t) => (
                         <span
                           key={t}
-                          className="px-3 py-1 text-[10px] font-bold text-slate-400 bg-white/5 rounded-full border border-white/5 hover:border-spidey-blue/50 hover:text-spidey-blue transition-all"
+                          className="px-2.5 py-1 text-[10px] font-bold text-slate-400 bg-white/5 rounded-full border border-white/5 hover:border-spidey-blue/50 hover:text-spidey-blue transition-all"
                         >
                           {t}
                         </span>

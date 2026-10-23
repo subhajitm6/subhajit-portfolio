@@ -2,62 +2,98 @@ import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import {
   SiJavascript, SiReact, SiLaravel, SiPhp, SiMysql,
-  SiTailwindcss, SiBootstrap, SiGit, SiGithub, SiFigma,
-  SiHtml5, SiJquery,
+  SiTailwindcss, SiGit, SiGithub, SiHtml5, SiPostgresql,
+  SiMongodb, SiFastapi, SiPython, SiPostman, SiDocker,
+  SiSupabase, SiVuedotjs
 } from 'react-icons/si';
-import { FaCss3Alt } from "react-icons/fa";
-import { FaJava } from 'react-icons/fa';
-import { HiDatabase, HiOfficeBuilding, HiCog } from 'react-icons/hi';
+import { FaCss3Alt, FaJava } from "react-icons/fa";
+import { HiServer, HiCode, HiDatabase, HiCog, HiCollection, HiCheckCircle } from 'react-icons/hi';
+import { VscFileCode } from 'react-icons/vsc';
 
 const skillCategories = [
   {
-    title: 'Offensive Capability',
-    subtitle: 'Languages',
+    title: 'Backend Engineering',
+    subtitle: 'APIs & Server Architecture',
     color: 'text-spidey-red',
     glowColor: 'bg-spidey-red',
+    icon: <HiServer className="w-5 h-5 text-spidey-red" />,
     skills: [
-      { name: 'Java', icon: <FaJava />, level: 75 },
-      { name: 'JavaScript', icon: <SiJavascript />, level: 85 },
-      { name: 'HTML5', icon: <SiHtml5 />, level: 95 },
-      { name: 'CSS3', icon: <FaCss3Alt />, level: 90 },
-      { name: 'jQuery', icon: <SiJquery />, level: 70 },
-      { name: 'PHP', icon: <SiPhp />, level: 80 },
+      { name: 'PHP', icon: <SiPhp /> },
+      { name: 'Laravel', icon: <SiLaravel /> },
+      { name: 'Python', icon: <SiPython /> },
+      { name: 'FastAPI', icon: <SiFastapi /> },
+      { name: 'REST APIs', icon: <HiServer /> },
     ],
   },
   {
-    title: 'Structural Systems',
-    subtitle: 'Frameworks',
+    title: 'Frontend Development',
+    subtitle: 'User Interfaces & Client State',
     color: 'text-spidey-blue',
     glowColor: 'bg-spidey-blue',
+    icon: <HiCode className="w-5 h-5 text-spidey-blue" />,
     skills: [
-      { name: 'Laravel', icon: <SiLaravel />, level: 85 },
-      { name: 'React.js', icon: <SiReact />, level: 80 },
-      { name: 'Tailwind CSS', icon: <SiTailwindcss />, level: 90 },
-      { name: 'Bootstrap', icon: <SiBootstrap />, level: 85 },
+      { name: 'JavaScript (ES6+)', icon: <SiJavascript /> },
+      { name: 'React.js', icon: <SiReact /> },
+      { name: 'HTML5', icon: <SiHtml5 /> },
+      { name: 'CSS3', icon: <FaCss3Alt /> },
+      { name: 'Tailwind CSS', icon: <SiTailwindcss /> },
+      { name: 'AJAX / jQuery', icon: <SiJavascript /> },
     ],
   },
   {
-    title: 'Data Intelligence',
-    subtitle: 'Databases',
+    title: 'Databases & Storage',
+    subtitle: 'Data Modeling & Query Optimization',
     color: 'text-spidey-red',
     glowColor: 'bg-spidey-red',
+    icon: <HiDatabase className="w-5 h-5 text-spidey-red" />,
     skills: [
-      { name: 'MySQL', icon: <SiMysql />, level: 80 },
-      { name: 'MS Dataverse', icon: <HiDatabase />, level: 70 },
-      { name: 'SharePoint List', icon: <HiDatabase />, level: 75 },
+      { name: 'MySQL', icon: <SiMysql /> },
+      { name: 'PostgreSQL', icon: <SiPostgresql /> },
+      { name: 'MongoDB', icon: <SiMongodb /> },
     ],
   },
   {
-    title: 'Utility Arsenal',
-    subtitle: 'Tools',
+    title: 'API Testing & Platforms',
+    subtitle: 'Testing, Version Control & DevOps',
     color: 'text-spidey-blue',
     glowColor: 'bg-spidey-blue',
+    icon: <HiCog className="w-5 h-5 text-spidey-blue" />,
     skills: [
-      { name: 'Git', icon: <SiGit />, level: 85 },
-      { name: 'GitHub', icon: <SiGithub />, level: 85 },
-      { name: 'Power Apps', icon: <HiCog />, level: 75 },
-      { name: 'Office 365', icon: <HiOfficeBuilding />, level: 80 },
-      { name: 'Figma', icon: <SiFigma />, level: 70 },
+      { name: 'Swagger / OpenAPI', icon: <VscFileCode /> },
+      { name: 'Postman', icon: <SiPostman /> },
+      { name: 'Bruno', icon: <VscFileCode /> },
+      { name: 'Git', icon: <SiGit /> },
+      { name: 'GitHub', icon: <SiGithub /> },
+      { name: 'Docker', icon: <SiDocker /> },
+      { name: 'Supabase', icon: <SiSupabase /> },
+    ],
+  },
+  {
+    title: 'Additional Technologies',
+    subtitle: 'Specialized Enterprise & App Tools',
+    color: 'text-spidey-red',
+    glowColor: 'bg-spidey-red',
+    icon: <HiCollection className="w-5 h-5 text-spidey-red" />,
+    skills: [
+      { name: 'Java', icon: <FaJava /> },
+      { name: 'Vue.js', icon: <SiVuedotjs /> },
+      { name: 'Microsoft Power Apps', icon: <HiCog /> },
+      { name: 'SharePoint', icon: <HiDatabase /> },
+    ],
+  },
+  {
+    title: 'Core Software Concepts',
+    subtitle: 'Architecture, Security & Methodologies',
+    color: 'text-spidey-blue',
+    glowColor: 'bg-spidey-blue',
+    icon: <HiCheckCircle className="w-5 h-5 text-spidey-blue" />,
+    skills: [
+      { name: 'Object-Oriented Programming (OOP)' },
+      { name: 'MVC Architecture' },
+      { name: 'Authentication & RBAC' },
+      { name: 'Data Structures & Algorithms' },
+      { name: 'Workflow Automation' },
+      { name: 'API Testing Automation' },
     ],
   },
 ];
@@ -91,63 +127,56 @@ const Skills = () => {
         </motion.div>
 
         {/* Skills Grid */}
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {skillCategories.map((category, catIdx) => (
             <motion.div
               key={category.title}
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: catIdx * 0.2 }}
-              whileHover={{ y: -10 }}
-              className="glass-card rounded-2xl p-8 border border-white/5 hover:border-spidey-blue/30 relative overflow-hidden group shadow-2xl"
+              transition={{ duration: 0.6, delay: catIdx * 0.1 }}
+              whileHover={{ y: -6 }}
+              className="glass-card rounded-2xl p-6 sm:p-7 border border-white/5 hover:border-spidey-blue/30 relative overflow-hidden group shadow-2xl flex flex-col justify-between"
             >
               {/* Background Accent */}
-              <div className={`absolute top-0 right-0 w-32 h-32 opacity-5 rounded-full blur-3xl ${category.glowColor}`} />
+              <div className={`absolute top-0 right-0 w-28 h-28 opacity-10 rounded-full blur-2xl ${category.glowColor}`} />
               
-              <div className="flex items-end justify-between mb-8 border-b border-white/5 pb-4">
-                <div>
-                  <h3 className={`text-2xl font-bold font-heading ${category.color}`}>
-                    {category.title}
-                  </h3>
-                  <p className="text-xs text-slate-500 uppercase tracking-widest mt-1">
-                    {category.subtitle}
-                  </p>
+              <div>
+                <div className="flex items-start justify-between mb-6 border-b border-white/5 pb-4">
+                  <div>
+                    <h3 className={`text-xl font-bold font-heading ${category.color}`}>
+                      {category.title}
+                    </h3>
+                    <p className="text-[11px] text-slate-400 uppercase tracking-wider mt-1">
+                      {category.subtitle}
+                    </p>
+                  </div>
+                  <div className="h-9 w-9 border border-white/10 rounded-lg flex items-center justify-center bg-white/5 shadow-inner">
+                    {category.icon}
+                  </div>
                 </div>
-                <div className="h-10 w-10 border border-white/10 rounded-lg flex items-center justify-center text-slate-400 group-hover:text-white transition-colors">
-                  {catIdx % 2 === 0 ? <HiCog className="animate-spin-slow" /> : <HiLightningBolt />}
-                </div>
-              </div>
 
-              <div className="grid sm:grid-cols-2 gap-x-8 gap-y-6">
-                {category.skills.map((skill, skillIdx) => (
-                  <motion.div
-                    key={skill.name}
-                    initial={{ opacity: 0 }}
-                    animate={isInView ? { opacity: 1 } : {}}
-                    transition={{ duration: 0.5, delay: catIdx * 0.2 + skillIdx * 0.1 }}
-                    className="group/skill"
-                  >
-                    <div className="flex items-center justify-between mb-2">
-                      <div className="flex items-center gap-2">
-                        <span className={`${category.color} text-xl transition-transform group-hover/skill:scale-125 duration-300`}>
+                {/* Skill Badges */}
+                <div className="flex flex-wrap gap-2.5">
+                  {category.skills.map((skill, skillIdx) => (
+                    <motion.div
+                      key={skill.name}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                      transition={{ duration: 0.3, delay: catIdx * 0.1 + skillIdx * 0.05 }}
+                      whileHover={{ scale: 1.05 }}
+                      className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-900/60 border border-white/10 hover:border-spidey-blue/40 text-slate-200 hover:text-white transition-all shadow-sm group/badge cursor-default"
+                    >
+                      {skill.icon && (
+                        <span className={`${category.color} text-sm transition-transform group-hover/badge:scale-110`}>
                           {skill.icon}
                         </span>
-                        <span className="text-xs uppercase tracking-wider font-bold text-slate-300">{skill.name}</span>
-                      </div>
-                      <span className="text-[10px] text-slate-500 font-mono font-bold">{skill.level}%</span>
-                    </div>
-                    <div className="h-1.5 bg-slate-800 rounded-full overflow-hidden p-[1px]">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        animate={isInView ? { width: `${skill.level}%` } : {}}
-                        transition={{ duration: 1.5, delay: catIdx * 0.2 + skillIdx * 0.1, ease: 'circOut' }}
-                        className={`h-full rounded-full transition-all duration-500 relative ${category.glowColor}`}
-                      >
-                         <div className="absolute inset-0 bg-white/20 animate-pulse" />
-                      </motion.div>
-                    </div>
-                  </motion.div>
-                ))}
+                      )}
+                      <span className="text-xs font-medium tracking-wide">
+                        {skill.name}
+                      </span>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
             </motion.div>
           ))}
@@ -156,9 +185,5 @@ const Skills = () => {
     </section>
   );
 };
-
-const HiLightningBolt = () => (
-  <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 20 20" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clipRule="evenodd"></path></svg>
-);
 
 export default Skills;

@@ -83,12 +83,14 @@ const Hero = () => {
             <span className="text-lg sm:text-2xl font-light text-slate-300 italic opacity-80">
               <TypeAnimation
                 sequence={[
-                  'I build fast, scalable, and modern web apps',
-                  2000,
-                  'Design with speed, deploy with precision',
-                  2000,
-                  'Crafting digital experiences that stick',
-                  2000,
+                  'Laravel & React.js Full Stack Specialist',
+                  2200,
+                  'REST APIs, RBAC & Workflow Automation',
+                  2200,
+                  'SaaS Platforms & Payroll Automation',
+                  2200,
+                  'Crafting secure, high-performance web systems',
+                  2200,
                 ]}
                 wrapper="span"
                 speed={50}

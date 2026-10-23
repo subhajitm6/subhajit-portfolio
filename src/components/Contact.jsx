@@ -258,7 +258,7 @@ const Contact = () => {
               </div>
               <div>
                 <p className="text-[10px] text-slate-500 uppercase tracking-[0.2em] font-bold">Location</p>
-                <p className="text-sm text-white font-medium mt-1">West Bengal, India</p>
+                <p className="text-sm text-white font-medium mt-1">India</p>
               </div>
             </motion.div>
           </motion.div>

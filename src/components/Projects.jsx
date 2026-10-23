@@ -1,60 +1,151 @@
 import { motion, useInView, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { useRef } from 'react';
-import { HiExternalLink, HiCode } from 'react-icons/hi';
-import { SiReact, SiLaravel, SiJavascript, SiMysql } from 'react-icons/si';
+import { HiExternalLink, HiCode, HiCheck } from 'react-icons/hi';
+import { SiReact, SiLaravel, SiJavascript, SiFastapi, SiGithub } from 'react-icons/si';
+import { HiLightningBolt, HiDocumentReport } from 'react-icons/hi';
 
 const projects = [
   {
-    title: 'Crypto Tracker',
-    subtitle: 'Market Dashboard',
+    title: 'SaaS API Test Automation Platform',
+    subtitle: 'Automated Testing & Analytics',
     description:
-      'A real-time cryptocurrency tracking application featuring live data visualizations and portfolio management.',
-    tech: ['React', 'API', 'Charts', 'Tailwind'],
-    icon: <SiReact className="w-10 h-10" />,
-    color: 'from-spidey-blue/40 to-black',
-    accentColor: 'text-spidey-blue',
-    glowColor: 'shadow-spidey-blue/20',
-    liveUrl: 'https://subhajit-crypto-place.netlify.app/',
-    githubUrl: 'https://github.com/subhajitm6/crypto-place',
-  },
-  {
-    title: 'Smart Expense',
-    subtitle: 'Financial Intelligence',
-    description:
-      'Intelligent budget tracking system with visual analytics and data persistence for personal management.',
-    tech: ['JS', 'Charts', 'LocalDB'],
-    icon: <SiJavascript className="w-10 h-10" />,
-    color: 'from-spidey-red/40 to-black',
-    accentColor: 'text-spidey-red',
-    glowColor: 'shadow-spidey-red/20',
-    liveUrl: 'https://cash-flow--msubhajit.replit.app',
-    githubUrl: '',
-  },
-  {
-    title: 'Payroll System',
-    subtitle: 'Enterprise Core',
-    description:
-      'A robust HR solution featuring automated calculations, role management, and encrypted storage.',
-    tech: ['Laravel', 'MySQL', 'PHP'],
+      'A comprehensive SaaS platform that automates API testing using Swagger definitions, tracking real-time execution, metrics, and automated reporting.',
+    tech: ['Laravel', 'React.js', 'Swagger', 'MySQL'],
     icon: <SiLaravel className="w-10 h-10" />,
     color: 'from-spidey-blue/40 to-black',
     accentColor: 'text-spidey-blue',
     glowColor: 'shadow-spidey-blue/20',
-    liveUrl: '#',
-    githubUrl: '#',
+    highlights: [
+      'Swagger-based automated test generation reducing manual effort by 70%',
+      'Real-time execution monitoring, pass/fail analytics & latency tracking',
+      'Automated PDF report export & reusable modular UI components',
+    ],
+    liveUrl: '',
+    githubUrl: '',
   },
   {
-    title: 'SEO Platform',
-    subtitle: 'Search Mastery',
+    title: 'HR & Payroll Automation Portal',
+    subtitle: 'Enterprise Core System',
     description:
-      'Fully optimized publishing system with dynamic sitemaps and advanced meta-management protocols.',
-    tech: ['Laravel', 'SEO', 'MySQL'],
-    icon: <SiMysql className="w-10 h-10" />,
+      'Role-based payroll and personnel workflow system automating employee records, leaves, salary calculations, and compliance reporting.',
+    tech: ['Laravel', 'MySQL', 'AJAX', 'jQuery'],
+    icon: <SiLaravel className="w-10 h-10" />,
     color: 'from-spidey-red/40 to-black',
     accentColor: 'text-spidey-red',
     glowColor: 'shadow-spidey-red/20',
-    liveUrl: '#',
-    githubUrl: '#',
+    highlights: [
+      'Automated salary, bonus, and deduction logic cutting manual effort by 60%',
+      'Automated payslip generation with email notifications & monthly digests',
+      'AJAX live filtering, dashboards, and instant PDF report exports',
+    ],
+    liveUrl: '',
+    githubUrl: '',
+  },
+  {
+    title: 'Retail Sales & Order Management System',
+    subtitle: 'Operations & Commerce Platform',
+    description:
+      'Centralized operations hub handling sales orders, product inventories, automated billing, and customer loyalty retention.',
+    tech: ['Laravel', 'MySQL', 'AJAX', 'jQuery'],
+    icon: <SiLaravel className="w-10 h-10" />,
+    color: 'from-spidey-blue/40 to-black',
+    accentColor: 'text-spidey-blue',
+    glowColor: 'shadow-spidey-blue/20',
+    highlights: [
+      'Centralized order & product workflows reducing admin overhead by 50%',
+      'Automated invoice generation & trigger-based email notifications',
+      'Real-time sales performance metrics & customer loyalty tracking',
+    ],
+    liveUrl: '',
+    githubUrl: '',
+  },
+  {
+    title: 'Stock Price Predictor Web App',
+    subtitle: 'Market Forecasting Platform',
+    description:
+      'Predictive analytics application that forecasts stock price trends using historical market datasets with responsive visualization dashboards.',
+    tech: ['React.js', 'Tailwind CSS', 'Python', 'FastAPI', 'PostgreSQL'],
+    icon: <SiFastapi className="w-10 h-10" />,
+    color: 'from-spidey-red/40 to-black',
+    accentColor: 'text-spidey-red',
+    glowColor: 'shadow-spidey-red/20',
+    highlights: [
+      'Automated data cleaning & pipeline reducing prep effort by 50%',
+      'Interactive visual charts for market trajectories and forecast trends',
+      'Strict input validation interface cutting user errors by 40%',
+    ],
+    liveUrl: '',
+    githubUrl: '',
+  },
+  {
+    title: 'Digital Inspection & Document Management',
+    subtitle: 'Field Workflow Automation',
+    description:
+      'Model-driven inspection form application with predefined rules, centralized document storage, and structured verification workflows.',
+    tech: ['Power Apps', 'SharePoint', 'Dataverse', 'Workflows'],
+    icon: <HiDocumentReport className="w-10 h-10" />,
+    color: 'from-spidey-blue/40 to-black',
+    accentColor: 'text-spidey-blue',
+    glowColor: 'shadow-spidey-blue/20',
+    highlights: [
+      'Model-driven inspection forms cutting manual data entry by 50%',
+      'Centralized SharePoint integration cutting document retrieval time by 40%',
+      'Standardized validation controls cutting entry inaccuracies by 45%',
+    ],
+    liveUrl: '',
+    githubUrl: '',
+  },
+  {
+    title: 'GitHub Profile Finder',
+    subtitle: 'Developer Tool & Search Platform',
+    description:
+      'A responsive web application built with React.js and Tailwind CSS that allows users to search for GitHub usernames and explore public developer profiles and repository statistics using the GitHub REST API.',
+    tech: ['React.js', 'Tailwind CSS', 'JavaScript (ES6+)', 'GitHub REST API'],
+    icon: <SiGithub className="w-10 h-10" />,
+    color: 'from-spidey-blue/40 to-black',
+    accentColor: 'text-spidey-blue',
+    glowColor: 'shadow-spidey-blue/20',
+    highlights: [
+      'Instant username search fetching real-time public GitHub developer profiles',
+      'Displays avatar, bio, follower/following counts, and public repositories',
+      'Clean responsive layout with integrated loading & error state handling',
+    ],
+    liveUrl: 'https://github-profile-finder-vuxn.onrender.com/',
+    githubUrl: '',
+  },
+  {
+    title: 'Crypto Tracker',
+    subtitle: 'Market Intelligence Dashboard',
+    description:
+      'Real-time cryptocurrency tracking application featuring live data visualizations, active market movements, and portfolio tracking.',
+    tech: ['React.js', 'Tailwind CSS', 'REST API', 'Charts'],
+    icon: <SiReact className="w-10 h-10" />,
+    color: 'from-spidey-red/40 to-black',
+    accentColor: 'text-spidey-red',
+    glowColor: 'shadow-spidey-red/20',
+    highlights: [
+      'Live crypto ticker feeds with interactive pricing charts',
+      'Clean responsive layout with instant search and trending metrics',
+    ],
+    liveUrl: 'https://subhajit-crypto-place.netlify.app/',
+    githubUrl: 'https://github.com/subhajitm6/crypto-place',
+  },
+  {
+    title: 'Smart Expense (Cash Flow)',
+    subtitle: 'Financial Intelligence Tool',
+    description:
+      'Interactive budget tracking application with visual breakdown analytics, category insights, and local data persistence.',
+    tech: ['JavaScript', 'Charts', 'Tailwind CSS', 'LocalDB'],
+    icon: <SiJavascript className="w-10 h-10" />,
+    color: 'from-spidey-blue/40 to-black',
+    accentColor: 'text-spidey-blue',
+    glowColor: 'shadow-spidey-blue/20',
+    highlights: [
+      'Income/expense categorization and visual budgetary charts',
+      'Persistent client state and transaction history analytics',
+    ],
+    liveUrl: 'https://cash-flow--msubhajit.replit.app',
+    githubUrl: '',
   },
 ];
 
@@ -71,11 +162,13 @@ const ProjectCard = ({ project, i, isInView }) => {
     y.set((e.clientY - rect.top) / rect.height - 0.5);
   };
 
+  const hasLinks = Boolean(project.liveUrl || project.githubUrl);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.8, delay: i * 0.2 }}
+      transition={{ duration: 0.8, delay: i * 0.15 }}
       className="group relative"
       onMouseMove={handleMouseMove}
       onMouseLeave={() => { x.set(0); y.set(0); }}
@@ -85,8 +178,8 @@ const ProjectCard = ({ project, i, isInView }) => {
         style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
         className="glass-card rounded-3xl overflow-hidden border border-white/5 hover:border-spidey-red/30 transition-all duration-500 shadow-2xl h-full flex flex-col"
       >
-        {/* Card Header/Image Area */}
-        <div className={`h-48 bg-gradient-to-br ${project.color} relative overflow-hidden flex items-center justify-center p-8`}>
+        {/* Card Header Area */}
+        <div className={`h-40 bg-gradient-to-br ${project.color} relative overflow-hidden flex items-center justify-center p-6`}>
            <div className="absolute inset-0 bg-web opacity-20 group-hover:opacity-40 transition-opacity" />
            <motion.div 
              style={{ translateZ: 50 }}
@@ -100,50 +193,80 @@ const ProjectCard = ({ project, i, isInView }) => {
         </div>
 
         {/* Card Content */}
-        <div className="p-8 flex-1 flex flex-col" style={{ translateZ: 30 }}>
-            <div className="mb-4">
-              <h3 className="text-2xl font-bold text-white font-heading group-hover:text-spidey-red transition-colors">
-                {project.title}
-              </h3>
-              <p className={`text-xs font-display tracking-widest uppercase mt-1 ${project.accentColor}`}>
-                {project.subtitle}
+        <div className="p-7 flex-1 flex flex-col justify-between" style={{ translateZ: 30 }}>
+            <div>
+              <div className="mb-3">
+                <h3 className="text-xl font-bold text-white font-heading group-hover:text-spidey-red transition-colors">
+                  {project.title}
+                </h3>
+                <p className={`text-[11px] font-display tracking-widest uppercase mt-1 ${project.accentColor}`}>
+                  {project.subtitle}
+                </p>
+              </div>
+
+              <p className="text-xs sm:text-sm text-slate-300 mb-4 leading-relaxed">
+                {project.description}
               </p>
+
+              {/* Highlights */}
+              {project.highlights && project.highlights.length > 0 && (
+                <ul className="space-y-1.5 mb-5 bg-black/20 p-3 rounded-xl border border-white/5">
+                  {project.highlights.map((hl, hlIdx) => (
+                    <li key={hlIdx} className="text-xs text-slate-400 flex items-start gap-2">
+                      <span className="text-spidey-blue mt-0.5 flex-shrink-0">
+                        <HiCheck className="w-3.5 h-3.5" />
+                      </span>
+                      <span>{hl}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              {/* Tech Cluster */}
+              <div className="flex flex-wrap gap-1.5 mb-6">
+                {project.tech.map((t) => (
+                  <span key={t} className="text-[10px] font-bold text-slate-300 bg-white/5 border border-white/10 px-2.5 py-1 rounded-md tracking-tight uppercase group-hover:border-spidey-blue/40 group-hover:text-white transition-colors">
+                    {t}
+                  </span>
+                ))}
+              </div>
             </div>
 
-            <p className="text-sm text-slate-400 mb-6 leading-relaxed flex-1">
-              {project.description}
-            </p>
-
-            {/* Tech Cluster */}
-            <div className="flex flex-wrap gap-2 mb-8">
-              {project.tech.map((t) => (
-                <span key={t} className="text-[9px] font-bold text-slate-500 border border-white/10 px-2 py-0.5 rounded tracking-tighter uppercase group-hover:border-spidey-blue/30 group-hover:text-slate-300 transition-colors">
-                  {t}
+            {/* Actions: only render valid links */}
+            {hasLinks ? (
+              <div className="flex gap-3 pt-3 border-t border-white/5" style={{ translateZ: 40 }}>
+                {project.liveUrl && (
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 btn-spidey py-2 text-[11px] text-center flex items-center justify-center gap-1.5"
+                  >
+                    <HiExternalLink className="w-3.5 h-3.5" />
+                    LIVE DEMO
+                  </a>
+                )}
+                {project.githubUrl && (
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 btn-outline-spidey py-2 text-[11px] text-center flex items-center justify-center gap-1.5 border-white/10 text-white hover:border-spidey-blue"
+                  >
+                    <HiCode className="w-3.5 h-3.5" />
+                    SOURCE
+                  </a>
+                )}
+              </div>
+            ) : (
+              <div className="pt-3 border-t border-white/5 flex items-center justify-between text-[11px] text-slate-500">
+                <span className="italic flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-spidey-blue" />
+                  Enterprise / Internal System
                 </span>
-              ))}
-            </div>
-
-            {/* Actions */}
-            <div className="flex gap-4" style={{ translateZ: 40 }}>
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 btn-spidey py-2 text-[10px] text-center flex items-center justify-center gap-2"
-              >
-                <HiExternalLink className="w-4 h-4" />
-                DEMO
-              </a>
-              <a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 btn-outline-spidey py-2 text-[10px] text-center flex items-center justify-center gap-2 border-white/10 text-white hover:border-spidey-blue"
-              >
-                <HiCode className="w-4 h-4" />
-                CODE
-              </a>
-            </div>
+                <span className="font-mono text-[10px] uppercase text-slate-400">Validated</span>
+              </div>
+            )}
         </div>
       </motion.div>
     </motion.div>

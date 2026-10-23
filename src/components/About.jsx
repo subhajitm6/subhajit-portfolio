@@ -59,27 +59,21 @@ const About = () => {
           >
             <div className="glass-card rounded-2xl p-8 sm:p-10 border-l-4 border-spidey-red">
               <p className="text-slate-100 leading-relaxed text-xl mb-6">
-                I am <span className="text-spidey-red font-bold">Subhajit Manna</span>, a Full Stack Developer 
-                driven by the responsibility of crafting high-impact digital experiences. 
-                Like a well-woven web, I ensure every line of code is connected, strong, and purposeful.
+                I am <span className="text-spidey-red font-bold">Subhajit Manna</span>, a Full Stack Developer with <span className="text-spidey-blue font-semibold">2+ years of experience</span> building secure, data-driven web applications using <span className="text-white font-medium">Laravel, PHP, React.js, and MySQL</span>.
               </p>
-              <p className="text-slate-400 leading-relaxed mb-6">
-                With a deep focus on <span className="text-spidey-blue font-medium">React</span> and <span className="text-spidey-blue font-medium">Node.js</span>, 
-                I bridge the gap between creative design and technical excellence. 
-                My mission is to build applications that are not just functional, but feel alive and responsive to every interaction.
+              <p className="text-slate-300 leading-relaxed mb-6">
+                I specialize in <span className="text-spidey-blue font-medium">REST API development, workflow automation, role-based access control (RBAC), and dashboard engineering</span>. My work spans enterprise payroll automation, retail management systems, and SaaS API testing platforms.
               </p>
               <p className="text-slate-400 leading-relaxed">
-                Whether it's architecting a robust backend or polishing a fluid UI, 
-                I bring the same intensity and precision to every project. 
-                I believe that with great code comes great user experience.
+                Whether architecting scalable backend APIs, optimizing relational schemas, or crafting fluid responsive interfaces, I focus on measurable business impact, clean MVC architecture, and exceptional user experience.
               </p>
 
               {/* Quick Stats */}
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 pt-8">
                 {[
-                  { num: '4+', label: 'Strategic Projects' },
-                  { num: '1+', label: 'Year Analysis' },
-                  { num: '10+', label: 'Core Skills' },
+                  { num: '2+', label: 'Years Experience' },
+                  { num: '5+', label: 'Enterprise & SaaS Projects' },
+                  { num: '20+', label: 'Technologies & Tools' },
                 ].map((stat) => (
                   <div key={stat.label} className="text-center group p-4 rounded-xl bg-slate-900/40 border border-white/5 hover:border-spidey-blue/30 transition-all duration-300">
                     <div className="text-3xl font-bold text-spidey-red drop-shadow-[0_0_8px_rgba(225,29,72,0.4)] transition-all group-hover:scale-110">{stat.num}</div>

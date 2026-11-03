@@ -6,6 +6,24 @@ import { HiLightningBolt, HiDocumentReport } from 'react-icons/hi';
 
 const projects = [
   {
+    title: 'WorkPulse',
+    subtitle: 'Full-Stack Productivity Platform',
+    description:
+      'A productivity and work management application for organizing tasks, managing projects, tracking daily work, and monitoring productivity.',
+    tech: ['React.js', 'FastAPI', 'PostgreSQL', 'Tailwind CSS', 'Framer Motion'],
+    icon: <SiReact className="w-10 h-10" />,
+    color: 'from-spidey-blue/40 to-black',
+    accentColor: 'text-spidey-blue',
+    glowColor: 'shadow-spidey-blue/20',
+    highlights: [
+      'Task Management & Project Tracking across workspaces',
+      'Daily Work Logs with activity history & time tracking',
+      'Productivity Analytics with visual metrics & progress summaries',
+    ],
+    liveUrl: 'https://work-pulse-q3tl.onrender.com/',
+    githubUrl: 'https://github.com/subhajitm6/work-pulse',
+  },
+  {
     title: 'SaaS API Test Automation Platform',
     subtitle: 'Automated Testing & Analytics',
     description:

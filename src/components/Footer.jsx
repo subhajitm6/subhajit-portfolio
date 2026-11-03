@@ -24,7 +24,7 @@ const Footer = () => {
             {[
               { icon: <FaGithub />, href: 'https://github.com/subhajitm6', label: 'GitHub', color: 'hover:text-spidey-red hover:shadow-spidey-red/40' },
               { icon: <FaLinkedinIn />, href: 'https://www.linkedin.com/in/subhajit-manna-1608651a9/', label: 'LinkedIn', color: 'hover:text-spidey-blue hover:shadow-spidey-blue/40' },
-              { icon: <FaInstagram />, href: 'https://www.instagram.com/hiii_subha/', label: 'Instagram', color: 'hover:text-spidey-red hover:shadow-spidey-red/40' },
+              { icon: <FaInstagram />, href: 'https://www.instagram.com/dev.subha.15/', label: 'Instagram', color: 'hover:text-spidey-red hover:shadow-spidey-red/40' },
               { icon: <FaEnvelope />, href: 'mailto:subhajitmanna367@gmail.com', label: 'Email', color: 'hover:text-spidey-blue hover:shadow-spidey-blue/40' },
               { isImage: true, icon: logo, href: 'https://nexmindx.onrender.com/', label: 'NexMindX', color: 'hover:shadow-spidey-red/40' },
             ].map((s) => (

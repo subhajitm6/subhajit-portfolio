@@ -5,12 +5,16 @@ import { TypeAnimation } from 'react-type-animation';
 import profilePic1 from '../assets/hero.png';
 import profilePic2 from '../assets/profile2.jpg';
 import profilePic3 from '../assets/profile3.jpg';
+import profilePic4 from '../assets/profile4.jpg';
+import profilePic5 from '../assets/profile5.jpg';
 import ProfileGallery from './ui/ProfileGallery';
 
 const profileImages = [
   { src: profilePic2, alt: 'Subhajit Manna - Portrait' },
-  { src: profilePic1, alt: 'Subhajit Manna - Full Stack Developer' },
+  { src: profilePic5, alt: 'Subhajit Manna - Retro Style' },
+  { src: profilePic4, alt: 'Subhajit Manna - Studio Suit' },
   { src: profilePic3, alt: 'Subhajit Manna - Digital Creator' },
+  { src: profilePic1, alt: 'Subhajit Manna - Full Stack Developer' },
 ];
 
 const Hero = () => {

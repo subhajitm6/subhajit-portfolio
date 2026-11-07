@@ -4,8 +4,18 @@ import { HiChevronLeft, HiChevronRight } from 'react-icons/hi';
 
 const ProfileGallery = ({ images = [] }) => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isBlinking, setIsBlinking] = useState(false);
   const containerRef = useRef(null);
   const lastScrollTime = useRef(0);
+  const blinkTimeoutRef = useRef(null);
+
+  const triggerBlink = useCallback(() => {
+    if (blinkTimeoutRef.current) clearTimeout(blinkTimeoutRef.current);
+    setIsBlinking(true);
+    blinkTimeoutRef.current = setTimeout(() => {
+      setIsBlinking(false);
+    }, 450);
+  }, []);
 
   // Normalize images list: ensure at least 3 items for cinematic 3D representation
   const items = React.useMemo(() => {
@@ -22,13 +32,15 @@ const ProfileGallery = ({ images = [] }) => {
 
   const nextImage = useCallback(() => {
     if (count <= 1) return;
+    triggerBlink();
     setActiveIndex((prev) => (prev + 1) % count);
-  }, [count]);
+  }, [count, triggerBlink]);
 
   const prevImage = useCallback(() => {
     if (count <= 1) return;
+    triggerBlink();
     setActiveIndex((prev) => (prev - 1 + count) % count);
-  }, [count]);
+  }, [count, triggerBlink]);
 
   // Keyboard navigation (Left / Right arrow keys)
   useEffect(() => {
@@ -218,18 +230,25 @@ const ProfileGallery = ({ images = [] }) => {
         </button>
       </div>
 
-      {/* Pagination Indicators */}
+      {/* Pagination Indicators - Showing exactly 3 slots (Left, Center, Right) */}
       <div className="mt-3 flex items-center gap-2 z-30 px-3 py-1.5 rounded-full bg-slate-950/70 backdrop-blur-md border border-white/10 shadow-lg">
-        {images.map((_, idx) => {
-          const isSelected = activeIndex % images.length === idx;
+        {[-1, 0, 1].map((offset) => {
+          const isCenter = offset === 0;
           return (
             <button
-              key={idx}
-              onClick={() => setActiveIndex(idx)}
-              aria-label={`Jump to photo ${idx + 1}`}
+              key={offset}
+              onClick={() => {
+                if (offset === -1) prevImage();
+                if (offset === 1) nextImage();
+              }}
+              aria-label={
+                isCenter ? 'Current center image' : offset === -1 ? 'Previous image' : 'Next image'
+              }
               className={`h-2 rounded-full transition-all duration-300 ${
-                isSelected
-                  ? 'w-7 bg-spidey-red shadow-[0_0_8px_#E11D48]'
+                isCenter
+                  ? isBlinking
+                    ? 'w-7 bg-spidey-blue shadow-[0_0_12px_#0284C7] animate-pulse'
+                    : 'w-7 bg-spidey-red shadow-[0_0_8px_#E11D48]'
                   : 'w-2.5 bg-white/30 hover:bg-white/60'
               }`}
             />

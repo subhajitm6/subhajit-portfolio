@@ -2,7 +2,16 @@ import { motion } from 'framer-motion';
 import { HiArrowDown, HiDownload } from 'react-icons/hi';
 import { Link } from 'react-scroll';
 import { TypeAnimation } from 'react-type-animation';
-import profilePic from '../assets/hero.png';
+import profilePic1 from '../assets/hero.png';
+import profilePic2 from '../assets/profile2.jpg';
+import profilePic3 from '../assets/profile3.jpg';
+import ProfileGallery from './ui/ProfileGallery';
+
+const profileImages = [
+  { src: profilePic2, alt: 'Subhajit Manna - Portrait' },
+  { src: profilePic1, alt: 'Subhajit Manna - Full Stack Developer' },
+  { src: profilePic3, alt: 'Subhajit Manna - Digital Creator' },
+];
 
 const Hero = () => {
   return (
@@ -123,31 +132,14 @@ const Hero = () => {
           </motion.div>
         </div>
 
-        {/* Right Section: Image */}
+        {/* Right Section: Interactive Profile Gallery */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8, rotate: 5 }}
           animate={{ opacity: 1, scale: 1, rotate: 0 }}
           transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
           className="relative order-2 flex justify-center lg:justify-end"
         >
-          <div className="relative group">
-            {/* Animated Glow Rings */}
-            <div className="absolute -inset-4 bg-spidey-red/20 blur-2xl rounded-full animate-pulse-glow opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
-            <div className="absolute -inset-1 bg-gradient-to-r from-spidey-red via-spidey-blue to-spidey-red rounded-2xl blur opacity-25 group-hover:opacity-50 transition-opacity duration-500 animate-tilt" />
-            
-            {/* Image Container */}
-            <div className="relative bg-spidey-black/50 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
-              <img 
-                src={profilePic} 
-                alt="Subhajit Manna" 
-                className="w-full max-w-[350px] md:max-w-[450px] lg:max-w-[500px] h-auto object-cover transform transition-transform duration-700 group-hover:scale-110"
-              />
-            </div>
-            
-            {/* Corner Accents */}
-            <div className="absolute -top-2 -right-2 w-8 h-8 border-t-2 border-r-2 border-spidey-red" />
-            <div className="absolute -bottom-2 -left-2 w-8 h-8 border-b-2 border-l-2 border-spidey-blue" />
-          </div>
+          <ProfileGallery images={profileImages} />
         </motion.div>
       </div>
 

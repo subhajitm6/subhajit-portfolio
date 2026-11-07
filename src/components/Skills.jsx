@@ -88,6 +88,7 @@ const skillCategories = [
     glowColor: 'bg-spidey-blue',
     icon: <HiCheckCircle className="w-5 h-5 text-spidey-blue" />,
     skills: [
+      { name: 'System Design' },
       { name: 'Object-Oriented Programming (OOP)' },
       { name: 'MVC Architecture' },
       { name: 'Authentication & RBAC' },

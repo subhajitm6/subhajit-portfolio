@@ -1,7 +1,7 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { HiMail, HiPhone, HiLocationMarker } from 'react-icons/hi';
-import { FaLinkedinIn } from 'react-icons/fa';
+import { HiMail, HiLocationMarker } from 'react-icons/hi';
+import { FaLinkedinIn, FaGithub } from 'react-icons/fa';
 
 const contactInfo = [
   {
@@ -11,10 +11,10 @@ const contactInfo = [
     href: 'mailto:subhajitmanna367@gmail.com',
   },
   {
-    icon: <HiPhone className="w-5 h-5" />,
-    label: 'Phone',
-    value: '+91 8910443107',
-    href: 'tel:+918910443107',
+    icon: <FaGithub className="w-5 h-5" />,
+    label: 'GitHub',
+    value: 'subhajitm6',
+    href: 'https://github.com/subhajitm6',
   },
   {
     icon: <FaLinkedinIn className="w-5 h-5" />,

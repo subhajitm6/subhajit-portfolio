@@ -7,10 +7,12 @@ import profilePic2 from '../assets/profile2.jpg';
 import profilePic3 from '../assets/profile3.jpg';
 import profilePic4 from '../assets/profile4.jpg';
 import profilePic5 from '../assets/profile5.jpg';
+import profilePic6 from '../assets/profile6.jpg';
 import ProfileGallery from './ui/ProfileGallery';
 
 const profileImages = [
   { src: profilePic2, alt: 'Subhajit Manna - Portrait' },
+  { src: profilePic6, alt: 'Subhajit Manna - Traditional Kurta' },
   { src: profilePic5, alt: 'Subhajit Manna - Retro Style' },
   { src: profilePic4, alt: 'Subhajit Manna - Studio Suit' },
   { src: profilePic3, alt: 'Subhajit Manna - Digital Creator' },
